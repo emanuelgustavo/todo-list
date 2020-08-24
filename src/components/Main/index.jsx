@@ -18,6 +18,8 @@ const Main = () => {
     ]);
   };
 
+  console.log(toDoList);
+
   return (
     <MainContainer>
       <TaskList toDoList={toDoList} />

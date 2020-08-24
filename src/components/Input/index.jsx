@@ -12,6 +12,11 @@ const Input = (props) => {
     setTaskText(event.target.value);
   };
 
+  const handleAddNewTask = () => {
+    props.handleAddToDo(taskText);
+    setTaskText("");
+  };
+
   return (
     <InputContainer>
       <input
@@ -20,7 +25,7 @@ const Input = (props) => {
         value={taskText}
         placeholder="New task..."
       />
-      <MdAddCircleOutline onClick={() => props.handleAddToDo(taskText)} />
+      <MdAddCircleOutline onClick={() => handleAddNewTask()} />
     </InputContainer>
   );
 };
