@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   width: 100%;
+  height: 100%;
+  max-width: 768px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -17,11 +19,20 @@ export const PageHeader = styled.header`
   margin: 3rem;
 `;
 
+export const MainContainer = styled.main`
+  width: 90%;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const PageFooter = styled.footer`
   width: 80vw;
   max-width: 640px;
   height: 15vh;
-  margin-top: auto;
+  margin-top: 2rem;
+  bottom: 0;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,16 +41,6 @@ export const PageFooter = styled.footer`
     fill: var(--primary-light);
     width: 4.5rem;
     height: 4.5rem;
-  }
-`;
-
-export const MainContainer = styled.main`
-  width: 90vw;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  @media (max-width: 768px) {
-    width: 90vw;
   }
 `;
 
@@ -75,11 +76,7 @@ export const TaskContainer = styled.div`
     font-size: 2rem;
     padding: 0.25rem;
     color: var(--primary-dark);
-    font-family: Lemonada;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
+    line-height: 2.5rem;
     z-index: 2;
   }
 
@@ -107,8 +104,6 @@ export const InputContainer = styled.div`
   margin: auto;
   padding: 0.25rem;
   background: var(--primary-light);
-  font-size: 24px;
-  line-height: 28px;
   position: relative;
   box-sizing: border-box;
 
@@ -117,8 +112,8 @@ export const InputContainer = styled.div`
     height: 100%;
     border-radius: 4px;
     border: 1px solid var(--primary-dark);
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 2rem;
+    line-height: 2.5rem;
     padding: 0.25rem;
     background: var(--primary-light);
 
@@ -139,5 +134,7 @@ export const InputContainer = styled.div`
     margin: 0.25rem;
     right: 2px;
     fill: var(--primary-dark);
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;

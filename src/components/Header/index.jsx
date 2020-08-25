@@ -6,7 +6,7 @@ import { PageHeader } from "../styles";
 const Header = ({ image }) => {
   return (
     <PageHeader>
-      <img src={image} alt="" srcset="" />
+      <img src={image} alt="" />
     </PageHeader>
   );
 };

@@ -13,6 +13,9 @@ const Input = (props) => {
   };
 
   const handleAddNewTask = () => {
+    if (taskText.length <= 3) {
+      return;
+    }
     props.handleAddToDo(taskText);
     setTaskText("");
   };

@@ -11,14 +11,11 @@ const Main = () => {
   const [toDoList, setToDoList] = useState([]);
 
   const handleAddToDo = (newTask) => {
-    console.log(newTask);
     setToDoList([
       ...toDoList,
       { index: `${newTask[0]}${toDoList.length}`, description: newTask }
     ]);
   };
-
-  console.log(toDoList);
 
   return (
     <MainContainer>
