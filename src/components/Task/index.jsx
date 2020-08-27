@@ -7,15 +7,17 @@ import { MdPauseCircleOutline, MdCheck } from "react-icons/md";
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
+  const textDecoration = props.data.done ? "line - through" : "none";
+
   return (
     <li key={props.data.index}>
-      <TaskContainer>
+      <TaskContainer done={textDecoration}>
         <p>{props.data.description}</p>
         <div>
           <div onClick={() => console.log("Paused")}>
             <MdPauseCircleOutline />
           </div>
-          <div onClick={() => console.log("Done")}>
+          <div onClick={() => props.handleTaskStatus(props.index)}>
             <MdCheck />
           </div>
         </div>

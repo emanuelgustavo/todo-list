@@ -78,6 +78,7 @@ export const TaskContainer = styled.div`
     color: var(--primary-dark);
     line-height: 2.5rem;
     z-index: 2;
+    text-decoration: ${(props) => props.done};
   }
 
   div {
