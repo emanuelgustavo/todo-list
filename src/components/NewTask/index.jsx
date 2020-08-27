@@ -6,7 +6,7 @@ import Input from "../Input";
 const NewTask = (props) => {
   return (
     <>
-      <Input handleAddToDo={props.handleAddToDo} />
+      <Input handleAddTask={props.handleAddTask} />
     </>
   );
 };

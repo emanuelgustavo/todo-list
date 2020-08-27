@@ -8,17 +8,18 @@ import NewTask from "../NewTask";
 import { MainContainer } from "../styles";
 
 const Main = () => {
-  const [toDoList, setToDoList] = useState([]);
+  const [taskList, setTaskList] = useState([]);
+  const [changeCount, setChangeCount] = useState(0);
 
   useEffect(() => {
-    setToDoList(toDoList);
-  }, [toDoList]);
+    setTaskList(taskList);
+  }, changeCount);
 
-  const handleAddToDo = (newTask) => {
-    setToDoList([
-      ...toDoList,
+  const handleAddTask = (newTask) => {
+    setTaskList([
+      ...taskList,
       {
-        index: `${newTask[0]}${toDoList.length}`,
+        index: `${newTask[0]}${taskList.length}`,
         description: newTask,
         done: false
       }
@@ -26,14 +27,14 @@ const Main = () => {
   };
 
   const handleTaskStatus = (index) => {
-    toDoList[index].done = !toDoList[index].done;
-    setToDoList(toDoList);
+    taskList[index].done = !taskList[index].done;
+    setChangeCount(changeCount + 1);
   };
 
   return (
     <MainContainer>
-      <TaskList toDoList={toDoList} handleTaskStatus={handleTaskStatus} />
-      <NewTask handleAddToDo={handleAddToDo} />
+      <TaskList taskList={taskList} handleTaskStatus={handleTaskStatus} />
+      <NewTask handleAddTask={handleAddTask} />
     </MainContainer>
   );
 };

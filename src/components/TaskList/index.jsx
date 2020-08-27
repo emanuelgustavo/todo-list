@@ -6,7 +6,7 @@ import Task from "../Task";
 const TaskList = (props) => {
   return (
     <ul style={{ listStyleType: "none" }}>
-      {props.toDoList.map((task, index) => {
+      {props.taskList.map((task, index) => {
         return (
           <Task
             data={task}

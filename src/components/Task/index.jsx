@@ -7,7 +7,7 @@ import { MdPauseCircleOutline, MdCheck } from "react-icons/md";
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
-  const textDecoration = props.data.done ? "line - through" : "none";
+  const textDecoration = props.data.done ? "line-through" : "none";
 
   return (
     <li key={props.data.index}>
