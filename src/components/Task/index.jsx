@@ -11,7 +11,7 @@ const Task = (props) => {
 
   return (
     <li key={props.data.index}>
-      <TaskContainer done={textDecoration}>
+      <TaskContainer done={textDecoration} timeLeft={75}>
         <p>{props.data.description}</p>
         <div>
           <div onClick={() => console.log("Paused")}>

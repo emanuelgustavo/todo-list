@@ -10,10 +10,18 @@ import { MainContainer } from "../styles";
 const Main = () => {
   const [taskList, setTaskList] = useState([]);
   const [changeCount, setChangeCount] = useState(0);
+  const [initialTime, setInitalTime] = useState(60);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     setTaskList(taskList);
-  }, changeCount);
+    setCounter(initialTime);
+  }, [changeCount, taskList, initialTime]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => handleCounter(), 1000);
+    return () => clearTimeout(timer);
+  });
 
   const handleAddTask = (newTask) => {
     setTaskList([
@@ -26,6 +34,13 @@ const Main = () => {
     ]);
   };
 
+  const handleCounter = () => {
+    if (counter < 0) {
+      return;
+    }
+    setCounter(counter - 1);
+  };
+
   const handleTaskStatus = (index) => {
     taskList[index].done = !taskList[index].done;
     setChangeCount(changeCount + 1);
@@ -33,6 +48,7 @@ const Main = () => {
 
   return (
     <MainContainer>
+      <p>Contador: {counter}</p>
       <TaskList taskList={taskList} handleTaskStatus={handleTaskStatus} />
       <NewTask handleAddTask={handleAddTask} />
     </MainContainer>

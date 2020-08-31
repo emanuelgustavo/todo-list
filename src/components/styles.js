@@ -57,7 +57,7 @@ export const TaskContainer = styled.div`
 
   &::after {
     content: "";
-    width: 50%;
+    width: ${(props) => `${props.timeLeft}%`};
     height: 100%;
     background: linear-gradient(
       90deg,
