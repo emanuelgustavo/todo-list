@@ -10,18 +10,10 @@ import { MainContainer } from "../styles";
 const Main = () => {
   const [taskList, setTaskList] = useState([]);
   const [changeCount, setChangeCount] = useState(0);
-  const [initialTime, setInitalTime] = useState(60);
-  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     setTaskList(taskList);
-    setCounter(initialTime);
-  }, [changeCount, taskList, initialTime]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => handleCounter(), 1000);
-    return () => clearTimeout(timer);
-  });
+  }, [changeCount]);
 
   const handleAddTask = (newTask) => {
     setTaskList([
@@ -29,16 +21,11 @@ const Main = () => {
       {
         index: `${newTask[0]}${taskList.length}`,
         description: newTask,
-        done: false
+        done: false,
+        play: false,
+        pause: true
       }
     ]);
-  };
-
-  const handleCounter = () => {
-    if (counter < 0) {
-      return;
-    }
-    setCounter(counter - 1);
   };
 
   const handleTaskStatus = (index) => {
@@ -46,10 +33,20 @@ const Main = () => {
     setChangeCount(changeCount + 1);
   };
 
+  const handlePlayTask = (index) => {
+    taskList[index].play = true;
+    taskList[index].pause = false;
+    setChangeCount(changeCount + 1);
+  };
+
   return (
     <MainContainer>
-      <p>Contador: {counter}</p>
-      <TaskList taskList={taskList} handleTaskStatus={handleTaskStatus} />
+      {JSON.stringify(taskList)}
+      <TaskList
+        taskList={taskList}
+        handleTaskStatus={handleTaskStatus}
+        handlePlayTask={handlePlayTask}
+      />
       <NewTask handleAddTask={handleAddTask} />
     </MainContainer>
   );

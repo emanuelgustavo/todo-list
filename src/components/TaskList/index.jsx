@@ -12,6 +12,7 @@ const TaskList = (props) => {
             data={task}
             index={index}
             handleTaskStatus={props.handleTaskStatus}
+            handlePlayTask={props.handlePlayTask}
           />
         );
       })}
