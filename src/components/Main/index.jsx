@@ -12,8 +12,9 @@ const Main = () => {
   const [changeCount, setChangeCount] = useState(0);
 
   useEffect(() => {
-    setTaskList(taskList);
-  }, [changeCount]);
+    //setTaskList(taskList);
+    console.log("useEffect");
+  }, []);
 
   const handleAddTask = (newTask) => {
     setTaskList([
@@ -23,29 +24,43 @@ const Main = () => {
         description: newTask,
         done: false,
         play: false,
-        pause: true
+        rest: false
       }
     ]);
   };
 
   const handleTaskStatus = (index) => {
-    taskList[index].done = !taskList[index].done;
+    const updatedTaskList = taskList;
+    updatedTaskList[index].done = !updatedTaskList[index].done;
+    setTaskList(updatedTaskList);
+    setChangeCount(changeCount + 1);
+  };
+
+  const handleTaskRest = (index) => {
+    const updatedTaskList = taskList;
+    updatedTaskList[index].rest = !updatedTaskList[index].rest;
+    setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
 
   const handlePlayTask = (index) => {
     taskList[index].play = true;
-    taskList[index].pause = false;
+    setChangeCount(changeCount + 1);
+  };
+
+  const handlePauseTask = (index) => {
+    taskList[index].play = false;
     setChangeCount(changeCount + 1);
   };
 
   return (
     <MainContainer>
-      {JSON.stringify(taskList)}
       <TaskList
         taskList={taskList}
         handleTaskStatus={handleTaskStatus}
         handlePlayTask={handlePlayTask}
+        handlePauseTask={handlePauseTask}
+        handleTaskRest={handleTaskRest}
       />
       <NewTask handleAddTask={handleAddTask} />
     </MainContainer>

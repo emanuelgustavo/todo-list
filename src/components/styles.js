@@ -72,6 +72,19 @@ export const TaskContainer = styled.div`
     border-radius: 4px;
   }
 
+  &::before {
+    content: "";
+    width: calc(100% - 20px);
+    height: 0.5rem;
+    background: var(--tomato);
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    z-index: 2;
+    border: solid 2px var(--primary-dark);
+    border-radius: 4px;
+  }
+
   p {
     font-size: 2rem;
     padding: 0.25rem;

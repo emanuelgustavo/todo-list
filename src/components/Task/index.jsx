@@ -11,17 +11,24 @@ import {
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
-  const [initialTime, setInitalTime] = useState(60);
+  const [taskTime, setTaskTime] = useState(60);
+  const [restTime, setRestTime] = useState(10);
+  const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(0);
 
-  const { play } = props;
+  const { play, done, rest } = props.data;
 
   const textDecoration = props.data.done ? "line-through" : "none";
-  const timeLeft = (100 / initialTime) * (initialTime - counter);
 
   useEffect(() => {
-    setCounter(initialTime);
-  }, [initialTime]);
+    if (rest) {
+      setCurrentTime(restTime);
+    } else {
+      setCurrentTime(taskTime);
+    }
+    setCounter(currentTime);
+  }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
     const timer = setTimeout(() => handleCounter(), 100);
@@ -29,12 +36,15 @@ const Task = (props) => {
   });
 
   const handleCounter = () => {
-    if (counter < 1) {
+    if (counter < 1 && !done) {
+      props.handleTaskStatus(props.index);
+      props.handleTaskRest(props.index);
       return;
     }
-    if (play) {
+    if (play && !done) {
       setCounter(counter - 1);
     }
+    setTimeLeft((100 / currentTime) * (currentTime - counter));
   };
 
   return (
@@ -42,11 +52,10 @@ const Task = (props) => {
       <TaskContainer done={textDecoration} timeLeft={timeLeft}>
         <p>{props.data.description}</p>
         <div>
-          <p>Contador: {timeLeft}</p>
           <div onClick={() => props.handlePlayTask(props.index)}>
             <MdPlayCircleOutline />
           </div>
-          <div onClick={() => console.log("Paused")}>
+          <div onClick={() => props.handlePauseTask(props.index)}>
             <MdPauseCircleOutline />
           </div>
           <div onClick={() => props.handleTaskStatus(props.index)}>
