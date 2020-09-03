@@ -57,7 +57,7 @@ export const TaskContainer = styled.div`
 
   &::after {
     content: "";
-    width: ${(props) => `${props.timeLeft}%`};
+    width: ${(props) => `${props.taskTimeWidth}%`};
     height: 100%;
     background: linear-gradient(
       90deg,
@@ -74,7 +74,7 @@ export const TaskContainer = styled.div`
 
   &::before {
     content: "";
-    width: calc(100% - 20px);
+    width: ${(props) => `${props.restTimeWidth}%`};
     height: 0.5rem;
     background: var(--tomato);
     position: absolute;

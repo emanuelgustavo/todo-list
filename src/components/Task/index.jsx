@@ -11,11 +11,13 @@ import {
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
-  const [taskTime, setTaskTime] = useState(60);
-  const [restTime, setRestTime] = useState(10);
+  const [taskTime, setTaskTime] = useState(10);
+  const [restTime, setRestTime] = useState(3);
   const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [taskTimeWidth, setTaskTimeWidth] = useState(0);
+  const [restTimeWidth, setRestTimeWidth] = useState(0);
 
   const { play, done, rest } = props.data;
 
@@ -31,9 +33,18 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    const timer = setTimeout(() => handleCounter(), 100);
+    const timer = setTimeout(() => handleCounter(), 1000);
     return () => clearTimeout(timer);
   });
+
+  useEffect(() => {
+    if (done) {
+      setTaskTimeWidth(100);
+      setRestTimeWidth(timeLeft);
+    } else {
+      setTaskTimeWidth(timeLeft);
+    }
+  }, [timeLeft, done]);
 
   const handleCounter = () => {
     if (counter < 1 && !done) {
@@ -49,8 +60,13 @@ const Task = (props) => {
 
   return (
     <li key={props.data.index}>
-      <TaskContainer done={textDecoration} timeLeft={timeLeft}>
+      <TaskContainer
+        done={textDecoration}
+        taskTimeWidth={taskTimeWidth}
+        restTimeWidth={restTimeWidth}
+      >
         <p>{props.data.description}</p>
+        <p>{counter}</p>
         <div>
           <div onClick={() => props.handlePlayTask(props.index)}>
             <MdPlayCircleOutline />
