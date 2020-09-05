@@ -78,7 +78,7 @@ export const TaskContainer = styled.div`
     height: 0.5rem;
     background: var(--tomato);
     position: absolute;
-    left: 10px;
+    left: 0px;
     bottom: 0;
     z-index: 2;
     border: solid 2px var(--primary-dark);

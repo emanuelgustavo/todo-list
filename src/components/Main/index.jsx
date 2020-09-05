@@ -24,7 +24,8 @@ const Main = () => {
         description: newTask,
         done: false,
         play: false,
-        rest: false
+        rest: false,
+        finished: false
       }
     ]);
   };
@@ -53,6 +54,11 @@ const Main = () => {
     setChangeCount(changeCount + 1);
   };
 
+  const handleFinishedTask = (index) => {
+    taskList[index].finished = true;
+    setChangeCount(changeCount + 1);
+  };
+
   return (
     <MainContainer>
       <TaskList
@@ -61,6 +67,7 @@ const Main = () => {
         handlePlayTask={handlePlayTask}
         handlePauseTask={handlePauseTask}
         handleTaskRest={handleTaskRest}
+        handleFinishedTask={handleFinishedTask}
       />
       <NewTask handleAddTask={handleAddTask} />
     </MainContainer>
