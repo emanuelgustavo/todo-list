@@ -48,7 +48,7 @@ export const TaskContainer = styled.div`
   position: relative;
   width: 90%;
   margin: 1rem auto;
-  padding: 0.25rem;
+  padding: 0.75rem;
   display: flex;
   justify-content: space-between;
   border: solid 1px var(--primary-light);

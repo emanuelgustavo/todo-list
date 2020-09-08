@@ -25,8 +25,14 @@ const Task = (props) => {
   const textDecoration = props.data.done ? "line-through" : "none";
 
   useEffect(() => {
+    const timer = setTimeout(() => handleCounter(), 1000);
+    return () => clearTimeout(timer);
+  });
+
+  useEffect(() => {
     if (rest) {
       setCurrentTime(restTime);
+      setTimeLeft(0);
     } else {
       setCurrentTime(taskTime);
     }
@@ -34,29 +40,30 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    const timer = setTimeout(() => handleCounter(), 1000);
-    return () => clearTimeout(timer);
-  });
-
-  useEffect(() => {
+    console.log(`Aqui!: ${timeLeft}`);
+    console.log(props.data);
     if (done) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
     } else {
       setTaskTimeWidth(timeLeft);
     }
-    if (finished) {
-      setRestTimeWidth(100);
-      setTaskTimeWidth(100);
-    }
-  }, [timeLeft, done, finished]);
+  }, [timeLeft, done, finished, props.data]);
+
+  useEffect(() => {
+    const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
+    setTimeLeft(calcTimeLeft);
+  }, [counter]);
 
   const handleCounter = () => {
     if (counter < 1 && !done) {
       props.handleTaskStatus(index);
       props.handleTaskRest(index);
-      console.log("Aqui!");
       return;
+    }
+    if (finished) {
+      setRestTimeWidth(100);
+      setTaskTimeWidth(100);
     }
     //task timer play
     if (play && !done) {
@@ -66,11 +73,6 @@ const Task = (props) => {
     if (rest && counter > 0) {
       setCounter(counter - 1);
     }
-    if (rest && counter < 0) {
-      setCounter(counter - 1);
-    }
-    const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
-    setTimeLeft(calcTimeLeft);
   };
 
   return (
@@ -81,6 +83,8 @@ const Task = (props) => {
         restTimeWidth={restTimeWidth}
       >
         <p>{props.data.description}</p>
+        <p>timeLeft: {timeLeft}</p>
+        <p>cunter: {counter}</p>
         <div>
           <div onClick={() => props.handlePlayTask(index)}>
             <MdPlayCircleOutline />
