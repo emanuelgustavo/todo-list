@@ -40,15 +40,13 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    console.log(`Aqui!: ${timeLeft}`);
-    console.log(props.data);
     if (done) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
     } else {
       setTaskTimeWidth(timeLeft);
     }
-  }, [timeLeft, done, finished, props.data]);
+  }, [timeLeft, done, finished]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
