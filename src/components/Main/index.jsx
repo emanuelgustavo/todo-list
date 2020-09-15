@@ -9,12 +9,6 @@ import { MainContainer } from "../styles";
 
 const Main = () => {
   const [taskList, setTaskList] = useState([]);
-  const [changeCount, setChangeCount] = useState(0);
-
-  useEffect(() => {
-    //setTaskList(taskList);
-    console.log("useEffect");
-  }, []);
 
   const handleAddTask = (newTask) => {
     setTaskList([
@@ -30,45 +24,9 @@ const Main = () => {
     ]);
   };
 
-  const handleTaskStatus = (index) => {
-    const updatedTaskList = taskList;
-    updatedTaskList[index].done = !updatedTaskList[index].done;
-    setTaskList(updatedTaskList);
-    setChangeCount(changeCount + 1);
-  };
-
-  const handleTaskRest = (index) => {
-    const updatedTaskList = taskList;
-    updatedTaskList[index].rest = !updatedTaskList[index].rest;
-    setTaskList(updatedTaskList);
-    setChangeCount(changeCount + 1);
-  };
-
-  const handlePlayTask = (index) => {
-    taskList[index].play = true;
-    setChangeCount(changeCount + 1);
-  };
-
-  const handlePauseTask = (index) => {
-    taskList[index].play = false;
-    setChangeCount(changeCount + 1);
-  };
-
-  const handleFinishedTask = (index) => {
-    taskList[index].finished = true;
-    setChangeCount(changeCount + 1);
-  };
-
   return (
     <MainContainer>
-      <TaskList
-        taskList={taskList}
-        handleTaskStatus={handleTaskStatus}
-        handlePlayTask={handlePlayTask}
-        handlePauseTask={handlePauseTask}
-        handleTaskRest={handleTaskRest}
-        handleFinishedTask={handleFinishedTask}
-      />
+      <TaskList taskList={taskList} />
       <NewTask handleAddTask={handleAddTask} />
     </MainContainer>
   );

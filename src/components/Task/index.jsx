@@ -84,12 +84,16 @@ const Task = (props) => {
         <p>timeLeft: {timeLeft}</p>
         <p>cunter: {counter}</p>
         <div>
-          <div onClick={() => props.handlePlayTask(index)}>
-            <MdPlayCircleOutline />
-          </div>
-          <div onClick={() => props.handlePauseTask(index)}>
-            <MdPauseCircleOutline />
-          </div>
+          {props.data.play ? (
+            <div onClick={() => props.handlePauseTask(index)}>
+              <MdPauseCircleOutline />
+            </div>
+          ) : (
+            <div onClick={() => props.handlePlayTask(index)}>
+              <MdPlayCircleOutline />
+            </div>
+          )}
+
           <div onClick={() => props.handleTaskStatus(index)}>
             <MdCheck />
           </div>
