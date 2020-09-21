@@ -16,9 +16,11 @@ const Main = () => {
       {
         index: `${newTask[0]}${taskList.length}`,
         description: newTask,
-        done: false,
-        play: false,
+        task: true,
+        taskDone: false,
         rest: false,
+        restDone: false,
+        play: false,
         finished: false
       }
     ]);

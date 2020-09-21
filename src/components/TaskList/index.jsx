@@ -14,7 +14,7 @@ const TaskList = (props) => {
 
   const handleTaskStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].done = !updatedTaskList[index].done;
+    updatedTaskList[index].doneTask = true; //!updatedTaskList[index].doneTask;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };

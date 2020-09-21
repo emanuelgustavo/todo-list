@@ -19,7 +19,7 @@ const Task = (props) => {
   const [taskTimeWidth, setTaskTimeWidth] = useState(0);
   const [restTimeWidth, setRestTimeWidth] = useState(0);
 
-  const { play, done, rest, finished } = props.data;
+  const { play, finished, task, taskDone, rest, restDone } = props.data;
   const { index } = props;
 
   const textDecoration = props.data.done ? "line-through" : "none";
@@ -40,13 +40,13 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    if (done) {
+    if (taskDone) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
     } else {
       setTaskTimeWidth(timeLeft);
     }
-  }, [timeLeft, done, finished]);
+  }, [timeLeft, taskDone, finished]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
@@ -54,7 +54,7 @@ const Task = (props) => {
   }, [counter]);
 
   const handleCounter = () => {
-    if (counter < 1 && !done) {
+    if (counter < 1 && !taskDone) {
       props.handleTaskStatus(index);
       props.handleTaskRest(index);
       return;
@@ -64,7 +64,7 @@ const Task = (props) => {
       setTaskTimeWidth(100);
     }
     //task timer play
-    if (play && !done) {
+    if (play && task) {
       setCounter(counter - 1);
     }
     //rest timer play
@@ -83,6 +83,7 @@ const Task = (props) => {
         <p>{props.data.description}</p>
         <p>timeLeft: {timeLeft}</p>
         <p>cunter: {counter}</p>
+        <p>data: {JSON.stringify(props.data)}</p>
         <div>
           {props.data.play ? (
             <div onClick={() => props.handlePauseTask(index)}>
