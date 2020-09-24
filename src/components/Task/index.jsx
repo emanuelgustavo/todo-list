@@ -54,9 +54,11 @@ const Task = (props) => {
   }, [counter]);
 
   const handleCounter = () => {
-    if (counter < 1 && !taskDone) {
-      props.handleTaskStatus(index);
-      props.handleTaskRest(index);
+    if (counter < 1) {
+      props.handlePauseTask(index);
+      if (task) {
+        props.handleTaskStatus(index);
+      }
       return;
     }
     if (finished) {
@@ -68,7 +70,7 @@ const Task = (props) => {
       setCounter(counter - 1);
     }
     //rest timer play
-    if (rest && counter > 0) {
+    if (play && rest) {
       setCounter(counter - 1);
     }
   };
