@@ -40,9 +40,10 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    if (taskDone) {
+    if (taskDone && !rest) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
+      //setInterval(() => handleStartRest(), 1000);
     } else {
       setTaskTimeWidth(timeLeft);
     }
@@ -55,10 +56,10 @@ const Task = (props) => {
 
   const handleCounter = () => {
     if (counter < 1) {
-      props.handlePauseTask(index);
       if (task) {
         props.handleTaskStatus(index);
       }
+      props.handlePauseTask(index);
       return;
     }
     if (finished) {
@@ -75,6 +76,11 @@ const Task = (props) => {
     }
   };
 
+  const handleStartRest = () => {
+    //props.handleTaskRest(index);
+    alert("Working!");
+  };
+
   return (
     <li key={props.data.index}>
       <TaskContainer
@@ -83,9 +89,6 @@ const Task = (props) => {
         restTimeWidth={restTimeWidth}
       >
         <p>{props.data.description}</p>
-        <p>timeLeft: {timeLeft}</p>
-        <p>cunter: {counter}</p>
-        <p>data: {JSON.stringify(props.data)}</p>
         <div>
           {props.data.play ? (
             <div onClick={() => props.handlePauseTask(index)}>
@@ -96,7 +99,6 @@ const Task = (props) => {
               <MdPlayCircleOutline />
             </div>
           )}
-
           <div onClick={() => props.handleTaskStatus(index)}>
             <MdCheck />
           </div>

@@ -9,12 +9,13 @@ const TaskList = (props) => {
 
   useEffect(() => {
     setTaskList(props.taskList);
+    setChangeCount(0);
     console.log("useEffect");
-  }, [props]);
+  }, [props, changeCount]);
 
   const handleTaskStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].doneTask = true; //!updatedTaskList[index].doneTask;
+    updatedTaskList[index].taskDone = true; //!updatedTaskList[index].doneTask;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
