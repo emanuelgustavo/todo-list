@@ -10,6 +10,6 @@ const PageDefault = ({ children }) => {
 
 export default PageDefault;
 
-PageDefault.PropTypes = {
+PageDefault.propTypes = {
   children: PropTypes.node.isRequired
 };

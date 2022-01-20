@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 //import components
 import TaskList from "../TaskList";
@@ -28,8 +28,8 @@ const Main = () => {
 
   return (
     <MainContainer>
-      <TaskList taskList={taskList} />
       <NewTask handleAddTask={handleAddTask} />
+      <TaskList taskList={taskList} />
     </MainContainer>
   );
 };

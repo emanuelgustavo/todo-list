@@ -55,6 +55,7 @@ export const TaskContainer = styled.div`
   border-radius: 4px;
   box-sizing: border-box;
 
+  /*The task timer visual progress*/
   &::after {
     content: "";
     width: ${(props) => `${props.taskTimeWidth}%`};
@@ -72,6 +73,7 @@ export const TaskContainer = styled.div`
     border-radius: 4px;
   }
 
+  /*The rest timer visual progress*/
   &::before {
     content: "";
     width: ${(props) => `${props.restTimeWidth}%`};

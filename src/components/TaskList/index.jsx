@@ -10,7 +10,8 @@ const TaskList = (props) => {
   useEffect(() => {
     setTaskList(props.taskList);
     setChangeCount(0);
-    console.log("useEffect");
+    console.log("useEffect from taskList Component");
+    console.log(`changeCount: ${changeCount}`);
   }, [props, changeCount]);
 
   const handleTaskStatus = (index) => {
@@ -47,6 +48,7 @@ const TaskList = (props) => {
       {taskList.map((task, index) => {
         return (
           <Task
+            key={index}
             data={task}
             index={index}
             handleTaskStatus={handleTaskStatus}
