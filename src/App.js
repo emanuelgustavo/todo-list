@@ -16,7 +16,6 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <p>TESTE</p>
             <Home />
           </Route>
           <Route path="/settings">
