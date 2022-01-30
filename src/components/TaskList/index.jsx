@@ -10,8 +10,8 @@ const TaskList = (props) => {
   useEffect(() => {
     setTaskList(props.taskList);
     setChangeCount(0);
-    console.log("useEffect from taskList Component");
-    console.log(`changeCount: ${changeCount}`);
+    // console.log("useEffect from taskList Component");
+    // console.log(`changeCount: ${changeCount}`);
   }, [props, changeCount]);
 
   const handleTaskStatus = (index) => {
@@ -29,6 +29,7 @@ const TaskList = (props) => {
   };
 
   const handlePlayTask = (index) => {
+    //console.log(`handlePlayTask = (${index})`);
     taskList[index].play = true;
     setChangeCount(changeCount + 1);
   };

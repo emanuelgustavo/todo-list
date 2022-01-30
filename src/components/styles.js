@@ -24,6 +24,7 @@ export const MainContainer = styled.main`
   max-width: 768px;
   display: flex;
   flex-direction: column;
+  border: 1px solid greenyellow;
 `;
 
 export const PageFooter = styled.footer`
@@ -152,5 +153,23 @@ export const InputContainer = styled.div`
     fill: var(--primary-dark);
     top: 50%;
     transform: translateY(-50%);
+  }
+`;
+
+export const TimerContainer = styled.div`
+  position: absolute;
+  width: 100px;
+  right: 25px;
+  top: 25px;
+  color: var(--primary-light);
+  border: 1px solid var(--timer-red);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  :hover {
+    color: var(--timer-red);
+    background: var(--primary-light);
   }
 `;

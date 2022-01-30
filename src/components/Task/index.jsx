@@ -11,19 +11,28 @@ import {
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
-  const [taskTime, setTaskTime] = useState(10);
-  const [restTime, setRestTime] = useState(10);
   const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [taskTimeWidth, setTaskTimeWidth] = useState(0);
   const [restTimeWidth, setRestTimeWidth] = useState(0);
 
-  const { play, finished, task, taskDone, rest, restDone } = props.data;
+  const {
+    play,
+    finished,
+    task,
+    taskDone,
+    rest,
+    restDone,
+    taskTime,
+    restTime,
+    done
+  } = props.data;
   const { index } = props;
 
-  const textDecoration = props.data.done ? "line-through" : "none";
+  const textDecoration = done ? "line-through" : "none";
 
+  //handle timer
   useEffect(() => {
     const timer = setTimeout(() => handleCounter(), 1000);
     return () => clearTimeout(timer);
@@ -43,16 +52,15 @@ const Task = (props) => {
     if (taskDone && !rest) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
-      //setInterval(() => handleStartRest(), 1000);
     } else {
       setTaskTimeWidth(timeLeft);
     }
-  }, [timeLeft, taskDone, finished]);
+  }, [timeLeft, taskDone, finished, rest]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
     setTimeLeft(calcTimeLeft);
-  }, [counter]);
+  }, [counter, currentTime]);
 
   const handleCounter = () => {
     if (counter < 1) {
@@ -88,7 +96,11 @@ const Task = (props) => {
         taskTimeWidth={taskTimeWidth}
         restTimeWidth={restTimeWidth}
       >
-        <p>{props.data.description}</p>
+        <p>
+          {props.data.description}
+          {` times -> ${currentTime} | ${timeLeft}`}
+          {` Taskindex = ${index}`}
+        </p>
         <div>
           {props.data.play ? (
             <div onClick={() => props.handlePauseTask(index)}>
