@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //import styles
 import "./global.css";
@@ -14,14 +14,10 @@ const App = () => {
   return (
     <DefaultPage theme={"dark"}>
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </BrowserRouter>
     </DefaultPage>
   );
