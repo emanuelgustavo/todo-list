@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+//import context
+import { AppContext } from "../../context/AppContext";
 
 //import components
 import TaskList from "../TaskList";
@@ -13,6 +15,8 @@ const Main = () => {
   const [taskList, setTaskList] = useState([]);
   //list of tasks sequence to auto play
   const [taskListSequence, setTaskListSequence] = useState([]);
+  //test
+  const [test, setTest] = useState("");
 
   useEffect(() => {
     if (taskList > 0) {
@@ -48,11 +52,13 @@ const Main = () => {
   };
 
   return (
-    <MainContainer>
-      <Timer />
-      <NewTask handleAddTask={handleAddTask} />
-      <TaskList taskList={taskList} />
-    </MainContainer>
+    <AppContext.Provider value={test}>
+      <MainContainer>
+        <Timer />
+        <NewTask handleAddTask={handleAddTask} />
+        <TaskList taskList={taskList} />
+      </MainContainer>
+    </AppContext.Provider>
   );
 };
 
