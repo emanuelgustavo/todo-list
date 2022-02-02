@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import context
-import { AppContext } from "../../context/AppContext";
+import { AppContextProvider } from "../../context/AppContext";
 
 //import components
 import TaskList from "../TaskList";
@@ -52,13 +52,13 @@ const Main = () => {
   };
 
   return (
-    <AppContext.Provider value={test}>
+    <AppContextProvider>
       <MainContainer>
         <Timer />
         <NewTask handleAddTask={handleAddTask} />
         <TaskList taskList={taskList} />
       </MainContainer>
-    </AppContext.Provider>
+    </AppContextProvider>
   );
 };
 

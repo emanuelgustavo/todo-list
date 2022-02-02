@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+import { AppContextConsumer } from "../../context/AppContext";
+
 import { TimerContainer } from "../styles";
 
-const Timer = () => {
+const Timer = (props) => {
   const [timerCount, setTimerCount] = useState("");
 
   //handle timer
@@ -19,9 +21,14 @@ const Timer = () => {
   }
 
   return (
-    <TimerContainer>
-      <p>{timerCount}</p>
-    </TimerContainer>
+    <AppContextConsumer>
+      {(context) => (
+        <TimerContainer>
+          <p>{timerCount}</p>
+          <p>{context.test}</p>
+        </TimerContainer>
+      )}
+    </AppContextConsumer>
   );
 };
 
