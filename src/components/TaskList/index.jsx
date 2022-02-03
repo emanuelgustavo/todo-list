@@ -10,31 +10,30 @@ const TaskList = (props) => {
   useEffect(() => {
     setTaskList(props.taskList);
     setChangeCount(0);
-    // console.log("useEffect from taskList Component");
-    // console.log(`changeCount: ${changeCount}`);
   }, [props, changeCount]);
 
   const handleTaskStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].taskDone = true; //!updatedTaskList[index].doneTask;
+    updatedTaskList[index].task = false;
+    updatedTaskList[index].taskDone = true;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
 
-  const handleTaskRest = (index) => {
+  const handleRestStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].rest = !updatedTaskList[index].rest;
+    updatedTaskList[index].rest = false;
+    updatedTaskList[index].restDone = true;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
 
-  const handlePlayTask = (index) => {
-    //console.log(`handlePlayTask = (${index})`);
+  const handlePlayTimer = (index) => {
     taskList[index].play = true;
     setChangeCount(changeCount + 1);
   };
 
-  const handlePauseTask = (index) => {
+  const handlePauseTimer = (index) => {
     taskList[index].play = false;
     setChangeCount(changeCount + 1);
   };
@@ -53,9 +52,9 @@ const TaskList = (props) => {
             data={task}
             index={index}
             handleTaskStatus={handleTaskStatus}
-            handlePlayTask={handlePlayTask}
-            handlePauseTask={handlePauseTask}
-            handleTaskRest={handleTaskRest}
+            handlePlayTimer={handlePlayTimer}
+            handlePauseTimer={handlePauseTimer}
+            handleRestStatus={handleRestStatus}
             handleFinishedTask={handleFinishedTask}
           />
         );

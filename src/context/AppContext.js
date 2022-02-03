@@ -16,7 +16,6 @@ class AppContextProvider extends Component {
     this.setState({
       timer: nowTime.toLocaleTimeString()
     });
-    //setTimerCount(nowTime.toLocaleTimeString());
   };
 
   render() {

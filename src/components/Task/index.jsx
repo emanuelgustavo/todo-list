@@ -52,10 +52,11 @@ const Task = (props) => {
     if (taskDone && !rest) {
       setTaskTimeWidth(100);
       setRestTimeWidth(timeLeft);
-    } else {
+    }
+    if (task) {
       setTaskTimeWidth(timeLeft);
     }
-  }, [timeLeft, taskDone, finished, rest]);
+  }, [timeLeft, taskDone, finished, rest, task]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
@@ -63,16 +64,21 @@ const Task = (props) => {
   }, [counter, currentTime]);
 
   const handleCounter = () => {
+    if (taskDone && restDone) {
+      props.handleFinishedTask(index);
+      setRestTimeWidth(100);
+      setTaskTimeWidth(100);
+      return;
+    }
     if (counter < 1) {
       if (task) {
         props.handleTaskStatus(index);
       }
-      props.handlePauseTask(index);
+      if (rest) {
+        props.handleRestStatus(index);
+      }
+      props.handlePauseTimer(index);
       return;
-    }
-    if (finished) {
-      setRestTimeWidth(100);
-      setTaskTimeWidth(100);
     }
     //task timer play
     if (play && task) {
@@ -84,11 +90,6 @@ const Task = (props) => {
     }
   };
 
-  const handleStartRest = () => {
-    //props.handleTaskRest(index);
-    alert("Working!");
-  };
-
   return (
     <li key={props.data.index}>
       <TaskContainer
@@ -98,16 +99,16 @@ const Task = (props) => {
       >
         <p>
           {props.data.description}
-          {` times -> ${currentTime} | ${timeLeft}`}
-          {` Taskindex = ${index}`}
+          {` counter -> ${counter}`}
+          {` timeLeft: ${timeLeft}`}
         </p>
         <div>
           {props.data.play ? (
-            <div onClick={() => props.handlePauseTask(index)}>
+            <div onClick={() => props.handlePauseTimer(index)}>
               <MdPauseCircleOutline />
             </div>
           ) : (
-            <div onClick={() => props.handlePlayTask(index)}>
+            <div onClick={() => props.handlePlayTimer(index)}>
               <MdPlayCircleOutline />
             </div>
           )}

@@ -15,8 +15,6 @@ const Main = () => {
   const [taskList, setTaskList] = useState([]);
   //list of tasks sequence to auto play
   const [taskListSequence, setTaskListSequence] = useState([]);
-  //test
-  const [test, setTest] = useState("");
 
   useEffect(() => {
     if (taskList > 0) {
