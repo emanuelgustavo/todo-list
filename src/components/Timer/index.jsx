@@ -8,24 +8,23 @@ const Timer = (props) => {
   const [timerCount, setTimerCount] = useState("");
 
   //handle timer
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      getNowTime();
-    }, 1000);
-    return () => clearTimeout(timer);
-  });
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     getNowTime();
+  //   }, 1000);
+  //   return () => clearTimeout(timer);
+  // });
 
-  function getNowTime() {
-    const nowTime = new Date(Date.now());
-    setTimerCount(nowTime.toLocaleTimeString());
-  }
+  // function getNowTime() {
+  //   const nowTime = new Date(Date.now());
+  //   setTimerCount(nowTime.toLocaleTimeString());
+  // }
 
   return (
     <AppContextConsumer>
       {(context) => (
         <TimerContainer>
-          <p>{timerCount}</p>
-          <p>{context.test}</p>
+          <p>{context.timer}</p>
         </TimerContainer>
       )}
     </AppContextConsumer>
