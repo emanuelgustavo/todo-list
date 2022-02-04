@@ -14,15 +14,20 @@ const TaskList = (props) => {
 
   const handleTaskStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].task = false;
     updatedTaskList[index].taskDone = true;
+    setTaskList(updatedTaskList);
+    setChangeCount(changeCount + 1);
+  };
+
+  const handleStartRest = (index) => {
+    const updatedTaskList = taskList;
+    updatedTaskList[index].rest = true;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
 
   const handleRestStatus = (index) => {
     const updatedTaskList = taskList;
-    updatedTaskList[index].rest = false;
     updatedTaskList[index].restDone = true;
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
@@ -56,6 +61,7 @@ const TaskList = (props) => {
             handlePauseTimer={handlePauseTimer}
             handleRestStatus={handleRestStatus}
             handleFinishedTask={handleFinishedTask}
+            handleStartRest={handleStartRest}
           />
         );
       })}

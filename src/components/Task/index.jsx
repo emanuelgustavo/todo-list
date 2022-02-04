@@ -41,7 +41,7 @@ const Task = (props) => {
   useEffect(() => {
     if (rest) {
       setCurrentTime(restTime);
-      setTimeLeft(0);
+      setTimeLeft(restTime);
     } else {
       setCurrentTime(taskTime);
     }
@@ -49,11 +49,11 @@ const Task = (props) => {
   }, [rest, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    if (taskDone && !rest) {
-      setTaskTimeWidth(100);
-      setRestTimeWidth(timeLeft);
-    }
-    if (task) {
+    // if (taskDone && !rest) {
+    //   setTaskTimeWidth(100);
+    //   setRestTimeWidth(timeLeft);
+    // }
+    if (!taskDone) {
       setTaskTimeWidth(timeLeft);
     }
   }, [timeLeft, taskDone, finished, rest, task]);
@@ -71,10 +71,12 @@ const Task = (props) => {
       return;
     }
     if (counter < 1) {
-      if (task) {
+      if (task && !taskDone) {
         props.handleTaskStatus(index);
+        props.handleStartRest(index);
+        setTimeLeft(restTime);
       }
-      if (rest) {
+      if (rest && !restDone) {
         props.handleRestStatus(index);
       }
       props.handlePauseTimer(index);
