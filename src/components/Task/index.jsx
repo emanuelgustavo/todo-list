@@ -42,21 +42,25 @@ const Task = (props) => {
     if (rest) {
       setCurrentTime(restTime);
       setTimeLeft(restTime);
-    } else {
+    }
+    if (task) {
       setCurrentTime(taskTime);
+      setTimeLeft(taskTime);
+    }
+    if (task && taskDone) {
+      setCurrentTime(restTime);
     }
     setCounter(currentTime);
-  }, [rest, restTime, currentTime, taskTime]);
+  }, [task, rest, taskDone, restTime, currentTime, taskTime]);
 
   useEffect(() => {
-    // if (taskDone && !rest) {
-    //   setTaskTimeWidth(100);
-    //   setRestTimeWidth(timeLeft);
-    // }
-    if (!taskDone) {
+    if (task && !taskDone) {
       setTaskTimeWidth(timeLeft);
     }
-  }, [timeLeft, taskDone, finished, rest, task]);
+    if (rest && !restDone) {
+      setRestTimeWidth(timeLeft);
+    }
+  }, [timeLeft, taskDone, restDone, finished, rest, task]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
@@ -101,7 +105,6 @@ const Task = (props) => {
       >
         <p>
           {props.data.description}
-          {` counter -> ${counter}`}
           {` timeLeft: ${timeLeft}`}
         </p>
         <div>
