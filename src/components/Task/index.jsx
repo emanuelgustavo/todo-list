@@ -39,19 +39,26 @@ const Task = (props) => {
   });
 
   useEffect(() => {
+    //console.log(JSON.stringify(props.data));
     if (rest) {
       setCurrentTime(restTime);
-      setTimeLeft(restTime);
+      //setTimeLeft(restTime);
+      //console.log(`currentTime: ${currentTime}`);
     }
     if (task) {
       setCurrentTime(taskTime);
-      setTimeLeft(taskTime);
+      //setTimeLeft(taskTime);
     }
     if (task && taskDone) {
       setCurrentTime(restTime);
     }
-    setCounter(currentTime);
-  }, [task, rest, taskDone, restTime, currentTime, taskTime]);
+    if (taskDone && restDone) {
+      props.handlePauseTimer(index);
+      //console.log(`taskDone, restDone`);
+    } else {
+      setCounter(currentTime);
+    }
+  }, [task, rest, taskDone, restTime, currentTime, taskTime, props]);
 
   useEffect(() => {
     if (task && !taskDone) {
@@ -68,6 +75,7 @@ const Task = (props) => {
   }, [counter, currentTime]);
 
   const handleCounter = () => {
+    console.log(`counter: ${counter}, play: ${play}`);
     if (taskDone && restDone) {
       props.handleFinishedTask(index);
       setRestTimeWidth(100);
@@ -83,7 +91,6 @@ const Task = (props) => {
       if (rest && !restDone) {
         props.handleRestStatus(index);
       }
-      props.handlePauseTimer(index);
       return;
     }
     //task timer play

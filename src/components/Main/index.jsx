@@ -14,13 +14,13 @@ const Main = () => {
   //list of tasks
   const [taskList, setTaskList] = useState([]);
   //list of tasks sequence to auto play
-  const [taskListSequence, setTaskListSequence] = useState([]);
+  // const [taskListSequence, setTaskListSequence] = useState([]);
 
-  useEffect(() => {
-    if (taskList > 0) {
-      handleTaskSequence(taskList[taskList.length]);
-    }
-  }, [taskList]);
+  // useEffect(() => {
+  //   if (taskList > 0) {
+  //     handleTaskSequence(taskList[taskList.length]);
+  //   }
+  // }, [taskList]);
 
   const handleAddTask = (newTask) => {
     setTaskList([
@@ -34,20 +34,20 @@ const Main = () => {
         restDone: false,
         play: false,
         finished: false,
-        taskTime: 10,
-        restTime: 10
+        taskTime: 5, //s
+        restTime: 2 //s
       }
     ]);
   };
 
-  const handleTaskSequence = (task) => {
-    setTaskListSequence([
-      ...taskListSequence,
-      {
-        nextTask: task.index
-      }
-    ]);
-  };
+  // const handleTaskSequence = (task) => {
+  //   setTaskListSequence([
+  //     ...taskListSequence,
+  //     {
+  //       nextTask: task.index
+  //     }
+  //   ]);
+  // };
 
   return (
     <AppContextProvider>
