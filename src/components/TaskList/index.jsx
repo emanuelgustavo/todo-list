@@ -6,6 +6,7 @@ import Task from "../Task";
 const TaskList = (props) => {
   const [taskList, setTaskList] = useState([]);
   const [changeCount, setChangeCount] = useState(0);
+  const [nextTask, setNextTask] = useState(0);
 
   useEffect(() => {
     setTaskList(props.taskList);
@@ -15,6 +16,7 @@ const TaskList = (props) => {
   const handleTaskStatus = (index) => {
     const updatedTaskList = taskList;
     updatedTaskList[index].taskDone = true;
+    handleNextTask(index);
     setTaskList(updatedTaskList);
     setChangeCount(changeCount + 1);
   };
@@ -46,6 +48,12 @@ const TaskList = (props) => {
   const handleFinishedTask = (index) => {
     taskList[index].finished = true;
     setChangeCount(changeCount + 1);
+  };
+
+  const handleNextTask = (index) => {
+    const currentTask = taskList[index];
+    const nextTask = currentTask.index + 1;
+    setNextTask(nextTask);
   };
 
   return (

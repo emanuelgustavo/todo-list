@@ -34,31 +34,37 @@ const Task = (props) => {
 
   //handle timer
   useEffect(() => {
-    const timer = setTimeout(() => handleCounter(), 1000);
+    const timer = setTimeout(() => handleCounter(index), 1000);
     return () => clearTimeout(timer);
   });
 
+  //hanlde current time and pause Timer
   useEffect(() => {
-    //console.log(JSON.stringify(props.data));
     if (rest) {
       setCurrentTime(restTime);
-      //setTimeLeft(restTime);
-      //console.log(`currentTime: ${currentTime}`);
     }
     if (task) {
       setCurrentTime(taskTime);
-      //setTimeLeft(taskTime);
     }
     if (task && taskDone) {
       setCurrentTime(restTime);
     }
     if (taskDone && restDone) {
       props.handlePauseTimer(index);
-      //console.log(`taskDone, restDone`);
     } else {
       setCounter(currentTime);
     }
-  }, [task, rest, taskDone, restTime, currentTime, taskTime, props]);
+  }, [
+    task,
+    rest,
+    taskDone,
+    restDone,
+    restTime,
+    currentTime,
+    taskTime,
+    props,
+    index
+  ]);
 
   useEffect(() => {
     if (task && !taskDone) {
@@ -74,22 +80,22 @@ const Task = (props) => {
     setTimeLeft(calcTimeLeft);
   }, [counter, currentTime]);
 
-  const handleCounter = () => {
-    console.log(`counter: ${counter}, play: ${play}`);
+  const handleCounter = (taskIndex) => {
+    console.log(`task index: ${taskIndex}`);
     if (taskDone && restDone) {
-      props.handleFinishedTask(index);
+      props.handleFinishedTask(taskIndex);
       setRestTimeWidth(100);
       setTaskTimeWidth(100);
       return;
     }
     if (counter < 1) {
       if (task && !taskDone) {
-        props.handleTaskStatus(index);
-        props.handleStartRest(index);
+        props.handleTaskStatus(taskIndex);
+        props.handleStartRest(taskIndex);
         setTimeLeft(restTime);
       }
       if (rest && !restDone) {
-        props.handleRestStatus(index);
+        props.handleRestStatus(taskIndex);
       }
       return;
     }
@@ -112,7 +118,12 @@ const Task = (props) => {
       >
         <p>
           {props.data.description}
-          {` timeLeft: ${timeLeft}`}
+          {/*` ${JSON.stringify(props.data)}`*/}
+          {` ->Index: ${index} 
+               currentTime: ${currentTime} 
+               counter: ${counter}
+               play: ${play}
+          `}
         </p>
         <div>
           {props.data.play ? (

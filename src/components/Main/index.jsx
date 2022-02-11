@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 //import context
 import { AppContextProvider } from "../../context/AppContext";
 
@@ -35,7 +35,8 @@ const Main = () => {
         play: false,
         finished: false,
         taskTime: 5, //s
-        restTime: 2 //s
+        restTime: 2, //s
+        counter: 0
       }
     ]);
   };

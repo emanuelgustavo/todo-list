@@ -95,6 +95,7 @@ export const TaskContainer = styled.div`
     line-height: 2.5rem;
     z-index: 2;
     text-decoration: ${(props) => props.done};
+    word-break: break-all;
   }
 
   div {
