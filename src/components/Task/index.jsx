@@ -11,30 +11,55 @@ import {
 import { TaskContainer } from "../styles";
 
 const Task = (props) => {
+  //const { index } = props;
+
   const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [taskTimeWidth, setTaskTimeWidth] = useState(0);
   const [restTimeWidth, setRestTimeWidth] = useState(0);
+  //state imported from taskList component
 
-  const {
-    play,
-    finished,
-    task,
-    taskDone,
-    rest,
-    restDone,
-    taskTime,
-    restTime,
-    done
-  } = props.data;
-  const { index } = props;
+  //task State
+  const [play, setPlay] = useState();
+  const [finished, setFinished] = useState();
+  const [task, setTask] = useState();
+  const [taskDone, setTaskDone] = useState();
+  const [rest, setRest] = useState();
+  const [restDone, setRestDone] = useState();
+  const [taskTime, setTaskTime] = useState();
+  const [restTime, setRestTime] = useState();
+  const [done, setDone] = useState();
 
   const textDecoration = done ? "line-through" : "none";
 
+  //first useEffect
+  useEffect(() => {
+    const {
+      play,
+      finished,
+      task,
+      taskDone,
+      rest,
+      restDone,
+      taskTime,
+      restTime,
+      done
+    } = props.data;
+    setPlay(play);
+    setFinished(finished);
+    setTask(task);
+    setTaskDone(taskDone);
+    setRest(rest);
+    setRestDone(restDone);
+    setTaskTime(taskTime);
+    setRestTime(restTime);
+    setDone(done);
+  }, [props.data]);
+
   //handle timer
   useEffect(() => {
-    const timer = setTimeout(() => handleCounter(index), 1000);
+    const timer = setTimeout(() => handleCounter(), 1000);
     return () => clearTimeout(timer);
   });
 
@@ -50,52 +75,43 @@ const Task = (props) => {
       setCurrentTime(restTime);
     }
     if (taskDone && restDone) {
-      props.handlePauseTimer(index);
+      handlePlayTimer();
     } else {
       setCounter(currentTime);
     }
-  }, [
-    task,
-    rest,
-    taskDone,
-    restDone,
-    restTime,
-    currentTime,
-    taskTime,
-    props,
-    index
-  ]);
-
-  useEffect(() => {
-    if (task && !taskDone) {
-      setTaskTimeWidth(timeLeft);
-    }
-    if (rest && !restDone) {
-      setRestTimeWidth(timeLeft);
-    }
-  }, [timeLeft, taskDone, restDone, finished, rest, task]);
+  }, [task, rest, taskDone, restDone, restTime, currentTime, taskTime]);
 
   useEffect(() => {
     const calcTimeLeft = (100 / currentTime) * (currentTime - counter);
     setTimeLeft(calcTimeLeft);
   }, [counter, currentTime]);
 
-  const handleCounter = (taskIndex) => {
-    console.log(`task index: ${taskIndex}`);
-    if (taskDone && restDone) {
-      props.handleFinishedTask(taskIndex);
+  const handleCounter = () => {
+    if (!play) return;
+    if (finished) {
       setRestTimeWidth(100);
       setTaskTimeWidth(100);
+    }
+    if (task && !taskDone) {
+      setTaskTimeWidth(timeLeft);
+    }
+    if (rest && !restDone) {
+      setRestTimeWidth(timeLeft);
+    }
+    if (taskDone && restDone) {
+      handleFinishedTask();
+      // setRestTimeWidth(100);
+      // setTaskTimeWidth(100);
       return;
     }
     if (counter < 1) {
       if (task && !taskDone) {
-        props.handleTaskStatus(taskIndex);
-        props.handleStartRest(taskIndex);
+        handleTaskStatus();
+        handleStartRest();
         setTimeLeft(restTime);
       }
       if (rest && !restDone) {
-        props.handleRestStatus(taskIndex);
+        handleRestStatus();
       }
       return;
     }
@@ -109,33 +125,50 @@ const Task = (props) => {
     }
   };
 
+  //functions imported from taskList component
+  const handleTaskStatus = () => {
+    setTaskDone(true);
+  };
+
+  const handleStartRest = () => {
+    setRest(true);
+  };
+
+  const handleRestStatus = () => {
+    setRestDone(true);
+  };
+
+  const handlePlayTimer = () => {
+    setPlay(!play);
+  };
+
+  // const handlePauseTimer = () => {
+  //   setPlay(false);
+  // };
+
+  const handleFinishedTask = () => {
+    setFinished(true);
+  };
+
   return (
-    <li key={props.data.index}>
+    <li>
       <TaskContainer
         done={textDecoration}
         taskTimeWidth={taskTimeWidth}
         restTimeWidth={restTimeWidth}
       >
-        <p>
-          {props.data.description}
-          {/*` ${JSON.stringify(props.data)}`*/}
-          {` ->Index: ${index} 
-               currentTime: ${currentTime} 
-               counter: ${counter}
-               play: ${play}
-          `}
-        </p>
+        <p>{props.data.description}</p>
         <div>
-          {props.data.play ? (
-            <div onClick={() => props.handlePauseTimer(index)}>
+          {play ? (
+            <div onClick={() => handlePlayTimer()}>
               <MdPauseCircleOutline />
             </div>
           ) : (
-            <div onClick={() => props.handlePlayTimer(index)}>
+            <div onClick={() => handlePlayTimer()}>
               <MdPlayCircleOutline />
             </div>
           )}
-          <div onClick={() => props.handleTaskStatus(index)}>
+          <div onClick={() => handleTaskStatus()}>
             <MdCheck />
           </div>
         </div>

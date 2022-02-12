@@ -34,8 +34,8 @@ const Main = () => {
         restDone: false,
         play: false,
         finished: false,
-        taskTime: 5, //s
-        restTime: 2, //s
+        taskTime: 20, //s
+        restTime: 5, //s
         counter: 0
       }
     ]);

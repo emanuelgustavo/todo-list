@@ -24,7 +24,6 @@ export const MainContainer = styled.main`
   max-width: 768px;
   display: flex;
   flex-direction: column;
-  border: 1px solid greenyellow;
 `;
 
 export const PageFooter = styled.footer`
