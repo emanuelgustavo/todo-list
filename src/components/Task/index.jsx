@@ -29,9 +29,8 @@ const Task = (props) => {
   const [restDone, setRestDone] = useState();
   const [taskTime, setTaskTime] = useState();
   const [restTime, setRestTime] = useState();
-  const [done, setDone] = useState();
 
-  const textDecoration = done ? "line-through" : "none";
+  const textDecoration = taskDone ? "line-through" : "none";
 
   //first useEffect
   useEffect(() => {
@@ -43,8 +42,7 @@ const Task = (props) => {
       rest,
       restDone,
       taskTime,
-      restTime,
-      done
+      restTime
     } = props.data;
     setPlay(play);
     setFinished(finished);
@@ -54,7 +52,6 @@ const Task = (props) => {
     setRestDone(restDone);
     setTaskTime(taskTime);
     setRestTime(restTime);
-    setDone(done);
   }, [props.data]);
 
   //handle timer
@@ -74,11 +71,7 @@ const Task = (props) => {
     if (task && taskDone) {
       setCurrentTime(restTime);
     }
-    if (taskDone && restDone) {
-      handlePlayTimer();
-    } else {
-      setCounter(currentTime);
-    }
+    setCounter(currentTime);
   }, [task, rest, taskDone, restDone, restTime, currentTime, taskTime]);
 
   useEffect(() => {
@@ -87,11 +80,11 @@ const Task = (props) => {
   }, [counter, currentTime]);
 
   const handleCounter = () => {
-    if (!play) return;
     if (finished) {
       setRestTimeWidth(100);
       setTaskTimeWidth(100);
     }
+    if (!play) return;
     if (task && !taskDone) {
       setTaskTimeWidth(timeLeft);
     }
@@ -100,8 +93,7 @@ const Task = (props) => {
     }
     if (taskDone && restDone) {
       handleFinishedTask();
-      // setRestTimeWidth(100);
-      // setTaskTimeWidth(100);
+      handlePlayTimer();
       return;
     }
     if (counter < 1) {

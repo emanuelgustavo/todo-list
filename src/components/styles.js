@@ -19,7 +19,7 @@ export const PageHeader = styled.header`
   margin: 3rem;
 `;
 
-export const MainContainer = styled.main`
+export const MainContainer = styled.div`
   width: 90%;
   max-width: 768px;
   display: flex;
@@ -171,5 +171,33 @@ export const TimerContainer = styled.div`
   :hover {
     color: var(--timer-red);
     background: var(--primary-light);
+  }
+`;
+
+//collapsed menu
+export const MenuItemContainer = styled.div`
+  width: 90%;
+  border: 1px solid #ddd;
+  background: rebeccapurple;
+  color: white;
+  padding: 15px;
+  margin-bottom: 0;
+`;
+
+export const MenuOptionContainer = styled.div`
+  border: 1px solid gray;
+  border-top: none;
+  opacity: ${(props) => (props.open ? "1" : "0")};
+  max-height: ${(props) => (props.open ? "100%" : "0")};
+  overflow: hidden;
+  padding: ${(props) => (props.open ? "15px" : "0px 15px")};
+  transition: all 0.3s;
+
+  p {
+    margin: 0;
+  }
+
+  input {
+    margin: 0;
   }
 `;

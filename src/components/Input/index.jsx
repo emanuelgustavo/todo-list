@@ -20,11 +20,16 @@ const Input = (props) => {
     setTaskText("");
   };
 
+  const handleOnKeyPress = (event) => {
+    if (event.key === "Enter") handleAddNewTask();
+  };
+
   return (
     <InputContainer>
       <input
         type="text"
         onChange={(event) => handleSetTaskText(event)}
+        onKeyPress={(event) => handleOnKeyPress(event)}
         value={taskText}
         placeholder="New task..."
       />
