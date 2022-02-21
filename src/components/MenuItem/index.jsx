@@ -12,7 +12,9 @@ const MenuItem = (props) => {
 
   return (
     <>
-      <MenuItemContainer onClick={handleMenuOpen}>Teste</MenuItemContainer>
+      <MenuItemContainer onClick={handleMenuOpen}>
+        Pomodoro's Timer
+      </MenuItemContainer>
       <MenuOptions open={menuOpen} type={props.type} name={props.name} />
     </>
   );

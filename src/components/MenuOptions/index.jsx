@@ -1,29 +1,16 @@
-import { React, useState } from "react";
+import { React } from "react";
 
+//import styled-component
 import { MenuOptionContainer } from "../styles.js";
 
+import MenuOptionsTimer from "../MenuOptionsTimer";
+
 const MenuOptions = (props) => {
-  const [timer, setTimer] = useState(10);
-
-  const handleTimer = (event) => {
-    setTimer(event.target.value);
-  };
-
   return (
     <MenuOptionContainer open={props.open}>
-      <form>
-        <label for={props.name} />
-        <input
-          type={props.type}
-          id={props.name}
-          name={props.name}
-          min={10}
-          max={25}
-          value={timer}
-          onChange={(event) => handleTimer(event)}
-        />
-      </form>
-      <p>{timer}</p>
+      <MenuOptionsTimer name={"Task"} />
+      <MenuOptionsTimer name={"Rest"} />
+      <button>OK</button>
     </MenuOptionContainer>
   );
 };

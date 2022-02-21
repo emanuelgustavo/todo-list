@@ -178,26 +178,138 @@ export const TimerContainer = styled.div`
 export const MenuItemContainer = styled.div`
   width: 90%;
   border: 1px solid #ddd;
-  background: rebeccapurple;
-  color: white;
+  background: linear-gradient(
+    90deg,
+    rgba(143, 188, 187, 1) 0%,
+    rgba(140, 190, 147, 1) 100%
+  );
+  font-size: 2rem;
+  line-height: 2.5rem;
+  padding: 0.25rem;
+  color: var(--dark-primary);
   padding: 15px;
   margin-bottom: 0;
+  border-radius: 4px;
+  border: 1px solid transparent;
 `;
 
 export const MenuOptionContainer = styled.div`
-  border: 1px solid gray;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 90%;
+  background: linear-gradient(
+    90deg,
+    rgba(143, 188, 187, 1) 0%,
+    rgba(140, 190, 147, 1) 100%
+  );
+  border: 1px solid transparent;
   border-top: none;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
   opacity: ${(props) => (props.open ? "1" : "0")};
   max-height: ${(props) => (props.open ? "100%" : "0")};
   overflow: hidden;
+  margin-top: ${(props) => (props.open ? "0.25em" : "0")};
   padding: ${(props) => (props.open ? "15px" : "0px 15px")};
   transition: all 0.3s;
 
-  p {
-    margin: 0;
+  ::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: var(--dark-primary);
+    left: 0;
+    top: -4px;
+    border-radius: 4px;
   }
 
-  input {
+  button {
+    width: 40%;
+    margin: 4px auto;
+    border-radius: 4px;
+    border: 1px solid var(--dark-primary);
+    background: var(--dark-primary);
+    color: var(--primary-light);
+  }
+
+  button:hover {
+    background: var(--primary-light);
+    color: var(--dark-primary);
+    border: 1px solid var(--dark-primary);
+    transition: background 0.5s;
+  }
+`;
+
+export const MenuOptionTimerContainer = styled.div`
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  form {
     margin: 0;
+    width: 100%;
+    border: 1px solid lemonchiffon;
+  }
+
+  input[type="text"] {
+    margin: 0;
+    width: 20%;
+    text-align: center;
+    border: 1px solid lemonchiffon;
+    -webkit-appearance: none;
+    background: transparent;
+  }
+
+  p:first-child {
+    text-align: left;
+  }
+
+  p:last-child {
+    text-align: right;
+  }
+
+  input[type="text"]:focus {
+    background: var(--primary-light);
+    border: 1px solid var(--primary-light);
+  }
+
+  input[type="range"] {
+    height: 25px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: transparent;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animation: 0.2s;
+    box-shadow: 0px 0px 0px #000;
+    background: #2497e3;
+    border-radius: 1px;
+    border: opx solid #000;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000;
+    border: 1px solid #2497e3;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #a1d0ff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: #2497e3;
   }
 `;
