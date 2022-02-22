@@ -15,7 +15,17 @@ const MenuOptionsTimer = (props) => {
   return (
     <MenuOptionTimerContainer>
       <form>
-        <label htmlFor={props.name}>{props.name}</label>
+        <label htmlFor={props.name}>
+          <p>{props.name}</p>
+          <div>
+            <input
+              type="text"
+              value={timer}
+              onChange={(event) => handleTimer(event)}
+            />
+            <p>min</p>
+          </div>
+        </label>
         <input
           type="range"
           id={props.name}
@@ -28,11 +38,6 @@ const MenuOptionsTimer = (props) => {
       </form>
       <div>
         <p>{minTimer}</p>
-        <input
-          type="text"
-          value={timer}
-          onChange={(event) => handleTimer(event)}
-        />
         <p>{maxTimer}</p>
       </div>
     </MenuOptionTimerContainer>

@@ -177,6 +177,7 @@ export const TimerContainer = styled.div`
 //collapsed menu
 export const MenuItemContainer = styled.div`
   width: 90%;
+  margin: 0 auto;
   border: 1px solid #ddd;
   background: linear-gradient(
     90deg,
@@ -199,6 +200,7 @@ export const MenuOptionContainer = styled.div`
   flex-direction: column;
   align-content: center;
   width: 90%;
+  margin: 0 auto;
   background: linear-gradient(
     90deg,
     rgba(143, 188, 187, 1) 0%,
@@ -228,6 +230,9 @@ export const MenuOptionContainer = styled.div`
 
   button {
     width: 40%;
+    min-width: 120px;
+    height: 4rem;
+    min-height: 30px;
     margin: 4px auto;
     border-radius: 4px;
     border: 1px solid var(--dark-primary);
@@ -249,19 +254,39 @@ export const MenuOptionTimerContainer = styled.div`
     justify-content: space-between;
   }
 
+  label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    padding: 0.25rem;
+    color: var(--dark-primary);
+
+    div {
+      padding: 0;
+      width: 100px;
+
+      input[type="text"] {
+        margin: 0;
+        width: 50%;
+        text-align: right;
+        border: none;
+        background: transparent;
+      }
+
+      p {
+        width: 50%;
+        font-size: 2rem;
+        line-height: 2.5rem;
+        padding: 0.25rem;
+        color: var(--dark-primary);
+      }
+    }
+  }
+
   form {
     margin: 0;
     width: 100%;
-    border: 1px solid lemonchiffon;
-  }
-
-  input[type="text"] {
-    margin: 0;
-    width: 20%;
-    text-align: center;
-    border: 1px solid lemonchiffon;
-    -webkit-appearance: none;
-    background: transparent;
   }
 
   p:first-child {
@@ -272,15 +297,22 @@ export const MenuOptionTimerContainer = styled.div`
     text-align: right;
   }
 
+  input[type="text"] {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    padding: 0.25rem;
+    color: var(--dark-primary);
+  }
+
   input[type="text"]:focus {
     background: var(--primary-light);
-    border: 1px solid var(--primary-light);
+    border: 1px solid var(--dark-primary);
   }
 
   input[type="range"] {
-    height: 25px;
+    height: 2.5rem;
     -webkit-appearance: none;
-    margin: 10px 0;
+    margin: 1rem 0;
     width: 100%;
     background: transparent;
     outline: none;
@@ -288,7 +320,7 @@ export const MenuOptionTimerContainer = styled.div`
 
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 5px;
+    height: 2px;
     cursor: pointer;
     animation: 0.2s;
     box-shadow: 0px 0px 0px #000;
@@ -299,17 +331,17 @@ export const MenuOptionTimerContainer = styled.div`
 
   input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0px 0px 0px #000;
-    border: 1px solid #2497e3;
+    border: 2px solid transparent;
     height: 18px;
     width: 18px;
     border-radius: 25px;
-    background: #a1d0ff;
+    background: var(--dark-primary);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -7px;
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
-    background: #2497e3;
+    background: var(--dark-primary);
   }
 `;
