@@ -1,15 +1,20 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Outlet } from "react-router-dom";
+// import PropTypes from "prop-types";
 
 //import styled component
 import { Main } from "../styles";
 
-const PageDefault = ({ children }) => {
-  return <Main>{children}</Main>;
+const PageDefault = () => {
+  return (
+    <Main>
+      <Outlet />
+    </Main>
+  );
 };
 
 export default PageDefault;
 
-PageDefault.propTypes = {
-  children: PropTypes.node.isRequired
-};
+// PageDefault.propTypes = {
+//   children: PropTypes.node.isRequired
+// };

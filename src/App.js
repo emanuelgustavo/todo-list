@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 //import styles
 import "./global.css";
@@ -12,14 +12,12 @@ import DefaultPage from "./components/DefaultPage";
 //main app
 const App = () => {
   return (
-    <DefaultPage theme={"dark"}>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </BrowserRouter>
-    </DefaultPage>
+    <Routes>
+      <Route path="/" element={<DefaultPage theme={"dark"} />}>
+        <Route index element={<Home />} />
+        <Route path="/settings" element={<Settings />} />
+      </Route>
+    </Routes>
   );
 };
 

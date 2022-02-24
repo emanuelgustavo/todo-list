@@ -235,16 +235,20 @@ export const MenuOptionContainer = styled.div`
     min-height: 30px;
     margin: 4px auto;
     border-radius: 4px;
-    border: 1px solid var(--dark-primary);
+    border: 2px solid var(--dark-primary);
     background: var(--dark-primary);
     color: var(--primary-light);
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 
   button:hover {
     background: var(--primary-light);
     color: var(--dark-primary);
-    border: 1px solid var(--dark-primary);
-    transition: background 0.5s;
+    border: 2px solid var(--dark-primary);
+    transition: background 1s;
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 `;
 

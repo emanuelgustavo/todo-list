@@ -15,7 +15,12 @@ const MenuItem = (props) => {
       <MenuItemContainer onClick={handleMenuOpen}>
         Pomodoro's Timer
       </MenuItemContainer>
-      <MenuOptions open={menuOpen} type={props.type} name={props.name} />
+      <MenuOptions
+        handleMenuOpen={handleMenuOpen}
+        open={menuOpen}
+        type={props.type}
+        name={props.name}
+      />
     </>
   );
 };

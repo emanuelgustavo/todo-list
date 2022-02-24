@@ -43,7 +43,7 @@ const Home = () => {
         <NewTask handleAddTask={handleAddTask} />
         <TaskList taskList={taskList} />
       </Main>
-      <Footer />
+      <Footer to="/settings">Teste</Footer>
     </>
   );
 };

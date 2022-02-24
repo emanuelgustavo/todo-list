@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 //import components
 import Header from "../../components/Header";
@@ -18,8 +17,7 @@ const Settings = () => {
       <Main>
         <MenuItem type={"range"} name={"timerRange"} />
       </Main>
-      <Footer />
-      <Link to="/">Back</Link>
+      <Footer to="/">Teste Settings</Footer>
     </>
   );
 };
