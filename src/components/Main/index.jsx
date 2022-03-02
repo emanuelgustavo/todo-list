@@ -1,16 +1,14 @@
 import React from "react";
-//import context
-import { AppContextProvider } from "../../context/AppContext";
 
-//import styled componets
+//import styled components
 import { MainContainer } from "../styles";
 
 const Main = (props) => {
-  return (
-    <AppContextProvider>
-      <MainContainer>{props.children}</MainContainer>
-    </AppContextProvider>
-  );
+  return <MainContainer>{props.children}</MainContainer>;
 };
 
 export default Main;
+
+/* <AppContextProvider>
+      <MainContainer>{props.children}</MainContainer>
+    </AppContextProvider> */

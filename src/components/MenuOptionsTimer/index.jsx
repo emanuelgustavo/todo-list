@@ -1,12 +1,24 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
+
+//import Context
+// import { AppContextConsumer } from "../../context/AppContext";
+import SettingsContext from "../../context/SettingsContext";
 
 //import styled-component container
 import { MenuOptionTimerContainer } from "../styles.js";
 
 const MenuOptionsTimer = (props) => {
+  //destructuring context
+  const {
+    minTaskTime,
+    maxTaskTime,
+    minRestTime,
+    maxRestTime,
+    taskTime,
+    restTime
+  } = useContext(SettingsContext);
+
   const [timer, setTimer] = useState(10);
-  const maxTimer = 25;
-  const minTimer = 10;
 
   const handleTimer = (event) => {
     setTimer(event.target.value);
@@ -30,15 +42,15 @@ const MenuOptionsTimer = (props) => {
           type="range"
           id={props.name}
           name={props.name}
-          min={minTimer}
-          max={maxTimer}
+          min={minTaskTime}
+          max={maxTaskTime}
           value={timer}
           onChange={(event) => handleTimer(event)}
         />
       </form>
       <div>
-        <p>{minTimer}</p>
-        <p>{maxTimer}</p>
+        <p>{minTaskTime}</p>
+        <p>{maxTaskTime}</p>
       </div>
     </MenuOptionTimerContainer>
   );

@@ -3,7 +3,13 @@ const { Provider, Consumer } = React.createContext();
 
 class AppContextProvider extends Component {
   state = {
-    timer: 0
+    timer: 0,
+    minTaskTime: 10,
+    maxTaskTime: 50,
+    minRestTime: 5,
+    maxRestTime: 30,
+    taskTime: 10,
+    restTime: 5
   };
 
   componentDidMount() {

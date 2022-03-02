@@ -6,7 +6,7 @@ import { PageFooter } from "../styles";
 //import icon
 import { MdSettings, MdArrowBack } from "react-icons/md";
 
-const Footer = ({ children, to, ...props }) => {
+const Footer = ({ to }) => {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: false });
 

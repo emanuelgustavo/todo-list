@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 
+//import styled components
 import MenuItem from "../../components/MenuItem";
 
 //import logo
