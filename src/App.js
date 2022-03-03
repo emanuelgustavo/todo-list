@@ -17,12 +17,16 @@ import SettingsContext from "../src/context/SettingsContext";
 const App = () => {
   const value = {
     timer: 0,
-    minTaskTime: 10,
-    maxTaskTime: 50,
-    minRestTime: 5,
-    maxRestTime: 30,
-    taskTime: 10,
-    restTime: 5
+    task: {
+      minTime: 10,
+      maxTime: 50,
+      time: 10
+    },
+    rest: {
+      minTime: 5,
+      maxTime: 30,
+      time: 5
+    }
   };
 
   return (
