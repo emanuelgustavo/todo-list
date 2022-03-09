@@ -13,7 +13,7 @@ import TaskList from "../../components/TaskList";
 import logoHome from "../../assets/images/pomodoros-logo.svg";
 
 //import context
-import SettingsContext from "../../context/SettingsContext";
+import { SettingsContext } from "../../context/SettingsContext";
 
 const Home = () => {
   //destructuring context
@@ -48,7 +48,6 @@ const Home = () => {
         {/* <Timer /> */}
         <NewTask handleAddTask={handleAddTask} />
         <TaskList taskList={taskList} />
-        <p>{JSON.stringify(contextTest)}</p>
       </Main>
       <Footer to="/settings">Teste</Footer>
     </>
