@@ -8,7 +8,3 @@ const Main = (props) => {
 };
 
 export default Main;
-
-/* <AppContextProvider>
-      <MainContainer>{props.children}</MainContainer>
-    </AppContextProvider> */

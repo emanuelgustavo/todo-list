@@ -1,14 +1,14 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useContext } from "react";
 
 //import styled-component
 import { MenuOptionContainer, MenuOptionTimerContainer } from "../styles.js";
 
 //import Context
-import { SettingsContext } from "../../context/SettingsContext";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const MenuOptions = (props) => {
   //destructuring context
-  const { store, actions } = useContext(SettingsContext);
+  const { store, actions } = useContext(GlobalContext);
   const { task, rest } = store;
 
   const [taskState, setTaskState] = useState(task);

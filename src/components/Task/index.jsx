@@ -150,6 +150,7 @@ const Task = (props) => {
         restTimeWidth={restTimeWidth}
       >
         <p>{props.data.description}</p>
+        {`taskTime: ${props.data.taskTime} / restTime: ${props.data.restTime}`}
         <div>
           {play ? (
             <div onClick={() => handlePlayTimer()}>

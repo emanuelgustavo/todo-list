@@ -11,36 +11,19 @@ import DefaultPage from "./components/DefaultPage";
 
 //import context
 // import { AppContextProvider } from "../../context/AppContext";
-import {
-  SettingsContext,
-  SettingsContextProvider
-} from "../src/context/SettingsContext";
+import { GlobalContextProvider } from "../src/context/GlobalContext";
 
 //main app
 const App = () => {
-  // const value = {
-  //   timer: 0,
-  //   task: {
-  //     minTime: 10,
-  //     maxTime: 50,
-  //     time: 10
-  //   },
-  //   rest: {
-  //     minTime: 5,
-  //     maxTime: 30,
-  //     time: 5
-  //   }
-  // };
-
   return (
-    <SettingsContextProvider>
+    <GlobalContextProvider>
       <Routes>
         <Route path="/" element={<DefaultPage theme={"dark"} />}>
           <Route index element={<Home />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
-    </SettingsContextProvider>
+    </GlobalContextProvider>
   );
 };
 

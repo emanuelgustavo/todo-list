@@ -13,11 +13,12 @@ import TaskList from "../../components/TaskList";
 import logoHome from "../../assets/images/pomodoros-logo.svg";
 
 //import context
-import { SettingsContext } from "../../context/SettingsContext";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const Home = () => {
   //destructuring context
-  const contextTest = useContext(SettingsContext);
+  const { store } = useContext(GlobalContext);
+  const { task, rest } = store;
 
   //list of tasks
   const [taskList, setTaskList] = useState([]);
@@ -34,8 +35,8 @@ const Home = () => {
         restDone: false,
         play: false,
         finished: false,
-        taskTime: 5, //s
-        restTime: 2, //s
+        taskTime: task.time, //s
+        restTime: rest.time, //s
         counter: 0
       }
     ]);

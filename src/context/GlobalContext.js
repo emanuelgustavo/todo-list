@@ -1,19 +1,19 @@
 import { createContext, useState } from "react";
 
-export const SettingsContext = createContext(null);
+export const GlobalContext = createContext(null);
 
-export const SettingsContextProvider = (props) => {
+export const GlobalContextProvider = (props) => {
   const [store, setStore] = useState({
     timer: 0,
     task: {
       minTime: 10,
-      maxTime: 100,
-      time: 10
+      maxTime: 50,
+      time: 20
     },
     rest: {
-      minTime: 10,
-      maxTime: 100,
-      time: 10
+      minTime: 2,
+      maxTime: 15,
+      time: 5
     }
   });
 
@@ -22,8 +22,8 @@ export const SettingsContextProvider = (props) => {
   });
 
   return (
-    <SettingsContext.Provider value={{ store, actions }}>
+    <GlobalContext.Provider value={{ store, actions }}>
       {props.children}
-    </SettingsContext.Provider>
+    </GlobalContext.Provider>
   );
 };
