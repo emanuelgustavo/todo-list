@@ -1,4 +1,4 @@
-import { React, useState, useContext } from "react";
+import { React, useContext } from "react";
 
 //import components
 import Header from "../../components/Header";
@@ -17,37 +17,37 @@ import { GlobalContext } from "../../context/GlobalContext";
 
 const Home = () => {
   //destructuring context
-  const { store } = useContext(GlobalContext);
-  const { task, rest } = store;
+  const { store, actions } = useContext(GlobalContext);
+  const { taskList } = store;
 
   //list of tasks
-  const [taskList, setTaskList] = useState([]);
+  // const [taskList, setTaskList] = useState([]);
 
-  const handleAddTask = (newTask) => {
-    setTaskList([
-      ...taskList,
-      {
-        index: `${newTask[0]}${taskList.length}`,
-        description: newTask,
-        task: true,
-        taskDone: false,
-        rest: false,
-        restDone: false,
-        play: false,
-        finished: false,
-        taskTime: task.time, //s
-        restTime: rest.time, //s
-        counter: 0
-      }
-    ]);
-  };
+  // const handleAddTask = (newTask) => {
+  //   setTaskList([
+  //     ...taskList,
+  //     {
+  //       index: `${newTask[0]}${taskList.length}`,
+  //       description: newTask,
+  //       task: true,
+  //       taskDone: false,
+  //       rest: false,
+  //       restDone: false,
+  //       play: false,
+  //       finished: false,
+  //       taskTime: task.time, //s
+  //       restTime: rest.time, //s
+  //       counter: 0
+  //     }
+  //   ]);
+  // };
 
   return (
     <>
       <Header image={logoHome} />
       <Main>
         {/* <Timer /> */}
-        <NewTask handleAddTask={handleAddTask} />
+        <NewTask handleAddTask={actions.addNewTask} />
         <TaskList taskList={taskList} />
       </Main>
       <Footer to="/settings">Teste</Footer>

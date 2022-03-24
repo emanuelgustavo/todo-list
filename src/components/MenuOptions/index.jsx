@@ -9,7 +9,18 @@ import { GlobalContext } from "../../context/GlobalContext";
 const MenuOptions = (props) => {
   //destructuring context
   const { store, actions } = useContext(GlobalContext);
-  const { task, rest } = store;
+  const { task, rest } = store.settings;
+
+  const rangeTime = {
+    task: {
+      min: 10,
+      max: 50
+    },
+    rest: {
+      min: 2,
+      max: 10
+    }
+  };
 
   const [taskState, setTaskState] = useState(task);
   const [restState, setRestState] = useState(rest);
@@ -29,9 +40,9 @@ const MenuOptions = (props) => {
 
   const handleTime = (event, name) => {
     if (name === "Task")
-      setTaskState({ ...taskState, time: event.target.value });
+      setTaskState({ ...taskState, time: +event.target.value });
     if (name === "Rest")
-      setRestState({ ...restState, time: event.target.value });
+      setRestState({ ...restState, time: +event.target.value });
   };
 
   return (
@@ -53,15 +64,15 @@ const MenuOptions = (props) => {
             type="range"
             id={"Task"}
             name={"Task"}
-            min={store.task.minTime}
-            max={store.task.maxTime}
+            min={rangeTime.task.min}
+            max={rangeTime.task.max}
             value={taskState.time}
             onChange={(event) => handleTime(event, "Task")}
           />
         </form>
         <div>
-          <p>{store.task.minTime}</p>
-          <p>{store.task.maxTime}</p>
+          <p>{task.minTime || 5}</p>
+          <p>{task.maxTime || 50}</p>
         </div>
       </MenuOptionTimerContainer>
       <MenuOptionTimerContainer>
@@ -71,7 +82,7 @@ const MenuOptions = (props) => {
             <div>
               <input
                 type="text"
-                value={restState.time}
+                value={restState.time || 5}
                 onChange={(event) => handleTime(event, "Rest")}
               />
               <p>min</p>
@@ -81,15 +92,15 @@ const MenuOptions = (props) => {
             type="range"
             id={"Rest"}
             name={"Rest"}
-            min={store.rest.minTime}
-            max={store.rest.maxTime}
-            value={restState.time}
+            min={rest.minTime || 2}
+            max={rest.maxTime || 15}
+            value={restState.time || 5}
             onChange={(event) => handleTime(event, "Rest")}
           />
         </form>
         <div>
-          <p>{store.rest.minTime}</p>
-          <p>{store.rest.maxTime}</p>
+          <p>{rest.minTime || 2}</p>
+          <p>{rest.maxTime || 15}</p>
         </div>
       </MenuOptionTimerContainer>
       <button

@@ -7,7 +7,7 @@ const MenuOptionsTimer = (props) => {
   const [timer, setTimer] = useState(props.data.times.time);
 
   const handleTimer = (event) => {
-    setTimer(event.target.value);
+    setTimer(+event.target.value);
   };
 
   return (
