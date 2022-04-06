@@ -4,24 +4,15 @@ import { React, useState, useContext } from "react";
 import { MenuOptionContainer, MenuOptionTimerContainer } from "../styles.js";
 
 //import Context
-import { GlobalContext } from "../../context/GlobalContext";
+// import { GlobalContext } from "../../context/GlobalContext";
+import GlobalContext from "../../context/globalContext";
 
 const MenuOptions = (props) => {
   //destructuring context
-  const { store, actions } = useContext(GlobalContext);
-  const { task, rest } = store.settings;
+  const { settings, updateSettings } = useContext(GlobalContext);
+  const { task, rest } = settings;
 
-  const rangeTime = {
-    task: {
-      min: 10,
-      max: 50
-    },
-    rest: {
-      min: 2,
-      max: 10
-    }
-  };
-
+  //local state to handle user time input
   const [taskState, setTaskState] = useState(task);
   const [restState, setRestState] = useState(rest);
 
@@ -31,7 +22,7 @@ const MenuOptions = (props) => {
   };
 
   const handleSettings = () => {
-    actions.updateSettings({
+    updateSettings({
       timer: 0,
       task: taskState,
       rest: restState
@@ -64,15 +55,15 @@ const MenuOptions = (props) => {
             type="range"
             id={"Task"}
             name={"Task"}
-            min={rangeTime.task.min}
-            max={rangeTime.task.max}
+            min={taskState.minTime}
+            max={taskState.maxTime}
             value={taskState.time}
             onChange={(event) => handleTime(event, "Task")}
           />
         </form>
         <div>
-          <p>{task.minTime || 5}</p>
-          <p>{task.maxTime || 50}</p>
+          <p>{task.minTime}</p>
+          <p>{task.maxTime}</p>
         </div>
       </MenuOptionTimerContainer>
       <MenuOptionTimerContainer>
@@ -82,7 +73,7 @@ const MenuOptions = (props) => {
             <div>
               <input
                 type="text"
-                value={restState.time || 5}
+                value={restState.time}
                 onChange={(event) => handleTime(event, "Rest")}
               />
               <p>min</p>
@@ -92,15 +83,15 @@ const MenuOptions = (props) => {
             type="range"
             id={"Rest"}
             name={"Rest"}
-            min={rest.minTime || 2}
-            max={rest.maxTime || 15}
-            value={restState.time || 5}
+            min={rest.minTime}
+            max={rest.maxTime}
+            value={restState.time}
             onChange={(event) => handleTime(event, "Rest")}
           />
         </form>
         <div>
-          <p>{rest.minTime || 2}</p>
-          <p>{rest.maxTime || 15}</p>
+          <p>{rest.minTime}</p>
+          <p>{rest.maxTime}</p>
         </div>
       </MenuOptionTimerContainer>
       <button

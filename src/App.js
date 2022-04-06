@@ -10,20 +10,19 @@ import Settings from "./pages/Settings";
 import DefaultPage from "./components/DefaultPage";
 
 //import context
-// import { AppContextProvider } from "../../context/AppContext";
-import { GlobalContextProvider } from "../src/context/GlobalContext";
+import { GlobalStateProvider } from "../src/context/GlobalState";
 
 //main app
 const App = () => {
   return (
-    <GlobalContextProvider>
+    <GlobalStateProvider>
       <Routes>
         <Route path="/" element={<DefaultPage theme={"dark"} />}>
           <Route index element={<Home />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
-    </GlobalContextProvider>
+    </GlobalStateProvider>
   );
 };
 

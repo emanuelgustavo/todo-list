@@ -13,41 +13,35 @@ import TaskList from "../../components/TaskList";
 import logoHome from "../../assets/images/pomodoros-logo.svg";
 
 //import context
-import { GlobalContext } from "../../context/GlobalContext";
+import GlobalContext from "../../context/globalContext";
 
 const Home = () => {
   //destructuring context
-  const { store, actions } = useContext(GlobalContext);
-  const { taskList } = store;
+  const { settings, taskList, addNewTask } = useContext(GlobalContext);
+  const { task, rest } = settings;
 
-  //list of tasks
-  // const [taskList, setTaskList] = useState([]);
-
-  // const handleAddTask = (newTask) => {
-  //   setTaskList([
-  //     ...taskList,
-  //     {
-  //       index: `${newTask[0]}${taskList.length}`,
-  //       description: newTask,
-  //       task: true,
-  //       taskDone: false,
-  //       rest: false,
-  //       restDone: false,
-  //       play: false,
-  //       finished: false,
-  //       taskTime: task.time, //s
-  //       restTime: rest.time, //s
-  //       counter: 0
-  //     }
-  //   ]);
-  // };
+  const handleAddTask = (newTask) => {
+    addNewTask({
+      index: `${newTask[0]}${taskList.length}`,
+      description: newTask,
+      task: true,
+      taskDone: false,
+      rest: false,
+      restDone: false,
+      play: false,
+      finished: false,
+      taskTime: task.time, //s
+      restTime: rest.time, //s
+      counter: 0
+    });
+  };
 
   return (
     <>
       <Header image={logoHome} />
       <Main>
         {/* <Timer /> */}
-        <NewTask handleAddTask={actions.addNewTask} />
+        <NewTask handleAddTask={handleAddTask} />
         <TaskList taskList={taskList} />
       </Main>
       <Footer to="/settings">Teste</Footer>
