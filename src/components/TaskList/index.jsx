@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 //import components
 import Task from "../Task";
 
-const TaskList = (props) => {
-  const [taskList, setTaskList] = useState([]);
-  const [changeCount, setChangeCount] = useState(0);
+//import context
+import GlobalContext from "../../context/globalContext";
 
-  useEffect(() => {
-    // console.log(`TaskList changeCount: ${changeCount}`);
-    setTaskList(props.taskList);
-    setChangeCount(0);
-  }, [props, changeCount]);
-
+const TaskList = () => {
+  //destructuring globalcontext
+  const { taskList } = useContext(GlobalContext);
   return (
     <ul style={{ listStyleType: "none" }}>
       {taskList.map((task, index) => {

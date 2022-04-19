@@ -10,14 +10,14 @@ export const GlobalStateProvider = (props) => {
     settings: {
       timer: 0,
       task: {
-        minTime: 10,
-        maxTime: 50,
-        time: 20
+        minTime: 5,
+        maxTime: 10,
+        time: 5
       },
       rest: {
         minTime: 2,
-        maxTime: 15,
-        time: 5
+        maxTime: 5,
+        time: 2
       }
     }
   });

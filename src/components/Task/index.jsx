@@ -134,10 +134,6 @@ const Task = (props) => {
     setPlay(!play);
   };
 
-  // const handlePauseTimer = () => {
-  //   setPlay(false);
-  // };
-
   const handleFinishedTask = () => {
     setFinished(true);
   };
