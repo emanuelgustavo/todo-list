@@ -8,11 +8,13 @@ import GlobalContext from "../../context/globalContext";
 
 const TaskList = () => {
   //destructuring globalcontext
-  const { taskList } = useContext(GlobalContext);
+  const { taskList, updateTaskStatus } = useContext(GlobalContext);
   return (
     <ul style={{ listStyleType: "none" }}>
       {taskList.map((task, index) => {
-        return <Task key={index} data={task} />;
+        return (
+          <Task updateTaskStatus={updateTaskStatus} key={index} data={task} />
+        );
       })}
     </ul>
   );

@@ -2,7 +2,9 @@ import { useReducer } from "react";
 
 // export const GlobalContext = createContext(null);
 import GlobalContext from "./globalContext";
-import { reducers, UPDATE_SETTINGS, ADD_NEWTASK } from "./reducers";
+import { reducers } from "./reducers";
+//reducers constants
+import { UPDATE_SETTINGS, ADD_NEWTASK, UPDATE_TASK_STATUS } from "./reducers";
 
 export const GlobalStateProvider = (props) => {
   //Global state to settings with initial settings state
@@ -27,20 +29,25 @@ export const GlobalStateProvider = (props) => {
   });
 
   const updateSettings = (newSettings) => {
-    settingsDispatch({ type: UPDATE_SETTINGS, newSettings: newSettings });
+    settingsDispatch({ type: UPDATE_SETTINGS, newSettings });
   };
 
   const addNewTask = (newTask) => {
-    taskListDispatch({ type: ADD_NEWTASK, newTask: newTask });
+    taskListDispatch({ type: ADD_NEWTASK, newTask });
+  };
+
+  const updateTaskStatus = (task) => {
+    taskListDispatch({ type: UPDATE_TASK_STATUS, task });
   };
 
   return (
     <GlobalContext.Provider
       value={{
         settings: settingsState.settings,
-        updateSettings: updateSettings,
         taskList: taskListState.taskList,
-        addNewTask: addNewTask
+        updateSettings,
+        addNewTask,
+        updateTaskStatus
       }}
     >
       {props.children}

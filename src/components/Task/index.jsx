@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 //import icons
 import {
@@ -10,8 +10,13 @@ import {
 //import styled components
 import { TaskContainer } from "../styles";
 
+//import context
+import GlobalContext from "../../context/globalContext";
+
 const Task = (props) => {
-  //const { index } = props;
+  const { updateTaskStatus } = useContext(GlobalContext);
+
+  //const { index } = props.data;
 
   const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
@@ -159,6 +164,12 @@ const Task = (props) => {
           )}
           <div onClick={() => handleTaskStatus()}>
             <MdCheck />
+          </div>
+          <div
+            style={{ border: "2px solid lime" }}
+            onClick={() => updateTaskStatus(props.data.index)}
+          >
+            TESTE
           </div>
         </div>
       </TaskContainer>
