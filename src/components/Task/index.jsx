@@ -14,24 +14,23 @@ import { TaskContainer } from "../styles";
 import GlobalContext from "../../context/globalContext";
 
 const Task = (props) => {
-  const { updateTaskStatus } = useContext(GlobalContext);
+  const {
+    updateTaskDoneStatus,
+    updateRestDoneStatus,
+    updateRestStatus,
+    updateFinishedTaskStatus
+  } = useContext(GlobalContext);
 
-  //const { index } = props.data;
+  const { index, task, rest, taskDone, restDone, finished } = props.data;
 
   const [currentTime, setCurrentTime] = useState(0);
   const [counter, setCounter] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [taskTimeWidth, setTaskTimeWidth] = useState(0);
   const [restTimeWidth, setRestTimeWidth] = useState(0);
-  //state imported from taskList component
 
   //task State
   const [play, setPlay] = useState();
-  const [finished, setFinished] = useState();
-  const [task, setTask] = useState();
-  const [taskDone, setTaskDone] = useState();
-  const [rest, setRest] = useState();
-  const [restDone, setRestDone] = useState();
   const [taskTime, setTaskTime] = useState();
   const [restTime, setRestTime] = useState();
 
@@ -39,24 +38,10 @@ const Task = (props) => {
 
   //first useEffect
   useEffect(() => {
-    const {
-      play,
-      finished,
-      task,
-      taskDone,
-      rest,
-      restDone,
-      taskTime,
-      restTime
-    } = props.data;
-    setPlay(play);
-    setFinished(finished);
-    setTask(task);
-    setTaskDone(taskDone);
-    setRest(rest);
-    setRestDone(restDone);
+    const { play, taskTime, restTime } = props.data;
     setTaskTime(taskTime);
     setRestTime(restTime);
+    setPlay(play);
   }, [props.data]);
 
   //handle timer
@@ -124,15 +109,15 @@ const Task = (props) => {
 
   //functions imported from taskList component
   const handleTaskStatus = () => {
-    setTaskDone(true);
+    updateTaskDoneStatus(index);
   };
 
   const handleStartRest = () => {
-    setRest(true);
+    updateRestStatus(index);
   };
 
   const handleRestStatus = () => {
-    setRestDone(true);
+    updateRestDoneStatus(index);
   };
 
   const handlePlayTimer = () => {
@@ -140,36 +125,31 @@ const Task = (props) => {
   };
 
   const handleFinishedTask = () => {
-    setFinished(true);
+    updateFinishedTaskStatus(index);
   };
 
   return (
     <li>
+      {`taskDone: ${props.data.taskDone}`}
       <TaskContainer
         done={textDecoration}
         taskTimeWidth={taskTimeWidth}
         restTimeWidth={restTimeWidth}
       >
         <p>{props.data.description}</p>
-        {`taskTime: ${props.data.taskTime} / restTime: ${props.data.restTime}`}
         <div>
-          {play ? (
+          {play && !finished && (
             <div onClick={() => handlePlayTimer()}>
               <MdPauseCircleOutline />
             </div>
-          ) : (
+          )}
+          {!play && !finished && (
             <div onClick={() => handlePlayTimer()}>
               <MdPlayCircleOutline />
             </div>
           )}
           <div onClick={() => handleTaskStatus()}>
             <MdCheck />
-          </div>
-          <div
-            style={{ border: "2px solid lime" }}
-            onClick={() => updateTaskStatus(props.data.index)}
-          >
-            TESTE
           </div>
         </div>
       </TaskContainer>

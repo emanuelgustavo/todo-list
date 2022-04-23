@@ -4,7 +4,14 @@ import { useReducer } from "react";
 import GlobalContext from "./globalContext";
 import { reducers } from "./reducers";
 //reducers constants
-import { UPDATE_SETTINGS, ADD_NEWTASK, UPDATE_TASK_STATUS } from "./reducers";
+import {
+  UPDATE_SETTINGS,
+  ADD_NEWTASK,
+  UPDATE_TASKDONE_STATUS,
+  UPDATE_RESTDONE_STATUS,
+  UPDATE_REST_STATUS,
+  UPDATE_FINISHEDTASK_STATUS
+} from "./reducers";
 
 export const GlobalStateProvider = (props) => {
   //Global state to settings with initial settings state
@@ -36,8 +43,20 @@ export const GlobalStateProvider = (props) => {
     taskListDispatch({ type: ADD_NEWTASK, newTask });
   };
 
-  const updateTaskStatus = (task) => {
-    taskListDispatch({ type: UPDATE_TASK_STATUS, task });
+  const updateRestStatus = (task) => {
+    taskListDispatch({ type: UPDATE_REST_STATUS, task });
+  };
+
+  const updateTaskDoneStatus = (task) => {
+    taskListDispatch({ type: UPDATE_TASKDONE_STATUS, task });
+  };
+
+  const updateRestDoneStatus = (task) => {
+    taskListDispatch({ type: UPDATE_RESTDONE_STATUS, task });
+  };
+
+  const updateFinishedTaskStatus = (task) => {
+    taskListDispatch({ type: UPDATE_FINISHEDTASK_STATUS, task });
   };
 
   return (
@@ -47,7 +66,10 @@ export const GlobalStateProvider = (props) => {
         taskList: taskListState.taskList,
         updateSettings,
         addNewTask,
-        updateTaskStatus
+        updateTaskDoneStatus,
+        updateRestDoneStatus,
+        updateRestStatus,
+        updateFinishedTaskStatus
       }}
     >
       {props.children}
