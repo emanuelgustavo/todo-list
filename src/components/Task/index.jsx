@@ -42,7 +42,11 @@ const Task = (props) => {
     setTaskTime(taskTime);
     setRestTime(restTime);
     setPlay(play);
-  }, [props.data]);
+    if (finished) {
+      setRestTimeWidth(100);
+      setTaskTimeWidth(100);
+    }
+  }, [props.data, finished]);
 
   //handle timer
   useEffect(() => {
@@ -70,10 +74,10 @@ const Task = (props) => {
   }, [counter, currentTime]);
 
   const handleCounter = () => {
-    if (finished) {
-      setRestTimeWidth(100);
-      setTaskTimeWidth(100);
-    }
+    // if (finished) {
+    //   setRestTimeWidth(100);
+    //   setTaskTimeWidth(100);
+    // }
     if (!play) return;
     if (task && !taskDone) {
       setTaskTimeWidth(timeLeft);
@@ -130,7 +134,7 @@ const Task = (props) => {
 
   return (
     <li>
-      {`taskDone: ${props.data.taskDone}`}
+      {/* {`taskDone: ${props.data.taskDone}`} */}
       <TaskContainer
         done={textDecoration}
         taskTimeWidth={taskTimeWidth}
