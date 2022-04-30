@@ -15,6 +15,9 @@ import GlobalContext from "../../context/globalContext";
 
 const Task = (props) => {
   const {
+    handleComponentState,
+    runningTask,
+    handleRunningTask,
     updateTaskDoneStatus,
     updateRestDoneStatus,
     updateRestStatus,
@@ -126,6 +129,8 @@ const Task = (props) => {
 
   const handlePlayTimer = () => {
     setPlay(!play);
+    //handle running task
+    handleRunningTask();
   };
 
   const handleFinishedTask = () => {
@@ -134,7 +139,7 @@ const Task = (props) => {
 
   return (
     <li>
-      {/* {`taskDone: ${props.data.taskDone}`} */}
+      {`runningTask: ${runningTask}`}
       <TaskContainer
         done={textDecoration}
         taskTimeWidth={taskTimeWidth}

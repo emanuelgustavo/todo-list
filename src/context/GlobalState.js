@@ -5,7 +5,9 @@ import GlobalContext from "./globalContext";
 import { reducers } from "./reducers";
 //reducers constants
 import {
+  HANDLE_DISABLE_PROPERTY,
   UPDATE_SETTINGS,
+  RUNNING_TASK,
   ADD_NEWTASK,
   UPDATE_TASKDONE_STATUS,
   UPDATE_RESTDONE_STATUS,
@@ -14,6 +16,13 @@ import {
 } from "./reducers";
 
 export const GlobalStateProvider = (props) => {
+  //Global component state
+  const [stateOfComponents, componentsStateDispatch] = useReducer(reducers, {
+    settingsButton: {
+      disable: false
+    }
+  });
+
   //Global state to settings with initial settings state
   const [settingsState, settingsDispatch] = useReducer(reducers, {
     settings: {
@@ -30,19 +39,37 @@ export const GlobalStateProvider = (props) => {
       }
     }
   });
+
   //Global todolist with initial settings state
   const [taskListState, taskListDispatch] = useReducer(reducers, {
     taskList: []
   });
 
+  const [runningTask, runningTaskDispatch] = useReducer(reducers, {
+    runningTask: false
+  });
+
+  //Global state to handle compoenet behaviour
+  const handleComponentState = (component) => {
+    componentsStateDispatch({ type: HANDLE_DISABLE_PROPERTY, component });
+  };
+
+  //Task list
   const updateSettings = (newSettings) => {
     settingsDispatch({ type: UPDATE_SETTINGS, newSettings });
   };
 
+  //running task handler
+  const handleRunningTask = (runningTask) => {
+    runningTaskDispatch({ type: RUNNING_TASK, runningTask });
+  };
+
+  //New task
   const addNewTask = (newTask) => {
     taskListDispatch({ type: ADD_NEWTASK, newTask });
   };
 
+  //Handle task state
   const updateRestStatus = (task) => {
     taskListDispatch({ type: UPDATE_REST_STATUS, task });
   };
@@ -62,8 +89,11 @@ export const GlobalStateProvider = (props) => {
   return (
     <GlobalContext.Provider
       value={{
+        stateOfComponents,
         settings: settingsState.settings,
         taskList: taskListState.taskList,
+        handleComponentState,
+        handleRunningTask,
         updateSettings,
         addNewTask,
         updateTaskDoneStatus,
