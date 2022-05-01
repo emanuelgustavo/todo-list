@@ -13,8 +13,8 @@ export const UPDATE_REST_STATUS = "UPDATE_REST_STATUS";
 export const UPDATE_TASKDONE_STATUS = "UPDATE_TASKDONE_STATUS";
 export const UPDATE_RESTDONE_STATUS = "UPDATE_RESTDONE_STATUS";
 
-const handleDisableProperty = (componentsState, state) => {
-  console.log(componentsState);
+const handleDisableProperty = (component, state) => {
+  console.log(component);
   return { ...state };
 };
 
@@ -27,7 +27,7 @@ const addNewTask = (newTask, state) => {
 };
 
 const handleRunningTask = (runningTask, state) => {
-  return { ...state, runningTask: state.runningTask };
+  return { ...state, runningTask: !runningTask };
 };
 
 const updateRestStatus = (task, state) => {

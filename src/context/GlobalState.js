@@ -45,7 +45,7 @@ export const GlobalStateProvider = (props) => {
     taskList: []
   });
 
-  const [runningTask, runningTaskDispatch] = useReducer(reducers, {
+  const [runningTaskState, runningTaskDispatchState] = useReducer(reducers, {
     runningTask: false
   });
 
@@ -61,7 +61,7 @@ export const GlobalStateProvider = (props) => {
 
   //running task handler
   const handleRunningTask = (runningTask) => {
-    runningTaskDispatch({ type: RUNNING_TASK, runningTask });
+    runningTaskDispatchState({ type: RUNNING_TASK, runningTask });
   };
 
   //New task
@@ -92,6 +92,7 @@ export const GlobalStateProvider = (props) => {
         stateOfComponents,
         settings: settingsState.settings,
         taskList: taskListState.taskList,
+        runningTask: runningTaskState.runningTask,
         handleComponentState,
         handleRunningTask,
         updateSettings,

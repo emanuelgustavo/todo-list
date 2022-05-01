@@ -14,6 +14,7 @@ import { TaskContainer } from "../styles";
 import GlobalContext from "../../context/globalContext";
 
 const Task = (props) => {
+  //destructuring globalState
   const {
     handleComponentState,
     runningTask,
@@ -130,7 +131,7 @@ const Task = (props) => {
   const handlePlayTimer = () => {
     setPlay(!play);
     //handle running task
-    handleRunningTask();
+    handleRunningTask(runningTask);
   };
 
   const handleFinishedTask = () => {
