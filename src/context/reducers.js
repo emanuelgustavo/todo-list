@@ -13,10 +13,10 @@ export const UPDATE_REST_STATUS = "UPDATE_REST_STATUS";
 export const UPDATE_TASKDONE_STATUS = "UPDATE_TASKDONE_STATUS";
 export const UPDATE_RESTDONE_STATUS = "UPDATE_RESTDONE_STATUS";
 
-const handleDisableProperty = (component, state) => {
-  console.log(component);
-  return { ...state };
-};
+// const handleDisableProperty = (component, state) => {
+//   //console.log(component);
+//   return { ...state };
+// };
 
 const updateSettings = (newSettings, state) => {
   return { ...state, settings: newSettings };
@@ -64,8 +64,8 @@ const updateFinishedTaskStatus = (task, state) => {
 
 export const reducers = (state, action) => {
   switch (action.type) {
-    case HANDLE_DISABLE_PROPERTY:
-      return handleDisableProperty(action.componentsState, state);
+    // case HANDLE_DISABLE_PROPERTY:
+    //   return handleDisableProperty(action.component, state);
     case UPDATE_SETTINGS:
       return updateSettings(action.newSettings, state);
     case RUNNING_TASK:

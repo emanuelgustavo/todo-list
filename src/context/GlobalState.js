@@ -17,11 +17,12 @@ import {
 
 export const GlobalStateProvider = (props) => {
   //Global component state
-  const [stateOfComponents, componentsStateDispatch] = useReducer(reducers, {
-    settingsButton: {
-      disable: false
-    }
-  });
+  // const [stateOfComponents, componentsStateDispatch] = useReducer(reducers, {
+  //   settingsButton: {
+  //     id: "settingsButton",
+  //     disable: false
+  //   }
+  // });
 
   //Global state to settings with initial settings state
   const [settingsState, settingsDispatch] = useReducer(reducers, {
@@ -45,14 +46,15 @@ export const GlobalStateProvider = (props) => {
     taskList: []
   });
 
+  //Global runningTask
   const [runningTaskState, runningTaskDispatchState] = useReducer(reducers, {
     runningTask: false
   });
 
   //Global state to handle compoenet behaviour
-  const handleComponentState = (component) => {
-    componentsStateDispatch({ type: HANDLE_DISABLE_PROPERTY, component });
-  };
+  // const handleComponentState = (component) => {
+  //   componentsStateDispatch({ type: HANDLE_DISABLE_PROPERTY, component });
+  // };
 
   //Task list
   const updateSettings = (newSettings) => {
@@ -89,11 +91,12 @@ export const GlobalStateProvider = (props) => {
   return (
     <GlobalContext.Provider
       value={{
-        stateOfComponents,
+        // stateOfComponents,
         settings: settingsState.settings,
         taskList: taskListState.taskList,
         runningTask: runningTaskState.runningTask,
-        handleComponentState,
+        // settingsButton: stateOfComponents.settingsButton,
+        // handleComponentState,
         handleRunningTask,
         updateSettings,
         addNewTask,

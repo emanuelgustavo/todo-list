@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+//Global context
+import GlobalContext from "../../context/globalContext";
 
 //import styled components
 import { InputContainer } from "../styles";
@@ -6,9 +9,13 @@ import { InputContainer } from "../styles";
 import { MdAddCircleOutline } from "react-icons/md";
 
 const Input = (props) => {
+  //destructuring global context
+  const { runningTask } = useContext(GlobalContext);
+
   const [taskText, setTaskText] = useState("");
 
   const handleSetTaskText = (event) => {
+    if (runningTask) return;
     setTaskText(event.target.value);
   };
 
@@ -19,6 +26,7 @@ const Input = (props) => {
   };
 
   const handleOnKeyPress = (event) => {
+    if (runningTask) return;
     if (event.key === "Enter") handleAddNewTask();
   };
 

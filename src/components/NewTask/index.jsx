@@ -8,10 +8,13 @@ import GlobalContext from "../../context/globalContext";
 
 const NewTask = () => {
   //destructuring globalcontext
-  const { settings, taskList, addNewTask } = useContext(GlobalContext);
+  const { settings, taskList, addNewTask, runningTask } = useContext(
+    GlobalContext
+  );
   const { task, rest } = settings;
 
   const handleAddTask = (newTask) => {
+    if (runningTask) return;
     addNewTask({
       index: `${newTask[0]}${taskList.length}`,
       description: newTask,

@@ -16,7 +16,8 @@ import GlobalContext from "../../context/globalContext";
 const Task = (props) => {
   //destructuring globalState
   const {
-    handleComponentState,
+    // settingsButton,
+    // handleComponentState,
     runningTask,
     handleRunningTask,
     updateTaskDoneStatus,
@@ -132,6 +133,7 @@ const Task = (props) => {
     setPlay(!play);
     //handle running task
     handleRunningTask(runningTask);
+    // handleComponentState(settingsButton);
   };
 
   const handleFinishedTask = () => {
