@@ -15,7 +15,7 @@ const Input = (props) => {
   const [taskText, setTaskText] = useState("");
 
   const handleSetTaskText = (event) => {
-    if (runningTask) return;
+    if (runningTask.running) return;
     setTaskText(event.target.value);
   };
 
@@ -26,7 +26,7 @@ const Input = (props) => {
   };
 
   const handleOnKeyPress = (event) => {
-    if (runningTask) return;
+    if (runningTask.running) return;
     if (event.key === "Enter") handleAddNewTask();
   };
 

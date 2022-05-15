@@ -14,7 +14,7 @@ const NewTask = () => {
   const { task, rest } = settings;
 
   const handleAddTask = (newTask) => {
-    if (runningTask) return;
+    if (runningTask.running) return;
     addNewTask({
       index: `${newTask[0]}${taskList.length}`,
       description: newTask,

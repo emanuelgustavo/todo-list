@@ -48,7 +48,10 @@ export const GlobalStateProvider = (props) => {
 
   //Global runningTask
   const [runningTaskState, runningTaskDispatchState] = useReducer(reducers, {
-    runningTask: false
+    runningTask: {
+      taskId: "",
+      running: false
+    }
   });
 
   //Global state to handle compoenet behaviour

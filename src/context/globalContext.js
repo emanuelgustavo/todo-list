@@ -4,7 +4,7 @@ export default React.createContext({
   componentsState: {},
   settings: {},
   taskList: [],
-  runningTask: false,
+  runningTask: {},
   handleComponentState: (component) => {},
   handleRunningTask: (runningTask) => {},
   updateSettings: (newSettings) => {},

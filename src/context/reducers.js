@@ -27,7 +27,7 @@ const addNewTask = (newTask, state) => {
 };
 
 const handleRunningTask = (runningTask, state) => {
-  return { ...state, runningTask: !runningTask };
+  return { ...state, runningTask };
 };
 
 const updateRestStatus = (task, state) => {

@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 
+//import styled component
+import { TaskListContainer } from "../styles.js";
+
 //import components
 import Task from "../Task";
 
@@ -8,15 +11,17 @@ import GlobalContext from "../../context/globalContext";
 
 const TaskList = () => {
   //destructuring globalcontext
-  const { taskList, updateTaskStatus } = useContext(GlobalContext);
+  const { taskList, updateTaskStatus, runningTask } = useContext(GlobalContext);
   return (
-    <ul style={{ listStyleType: "none" }}>
-      {taskList.map((task, index) => {
-        return (
-          <Task updateTaskStatus={updateTaskStatus} key={index} data={task} />
-        );
-      })}
-    </ul>
+    <>
+      <TaskListContainer>
+        {taskList.map((task, index) => {
+          return (
+            <Task updateTaskStatus={updateTaskStatus} key={index} data={task} />
+          );
+        })}
+      </TaskListContainer>
+    </>
   );
 };
 

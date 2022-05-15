@@ -129,20 +129,27 @@ const Task = (props) => {
     updateRestDoneStatus(index);
   };
 
-  const handlePlayTimer = () => {
+  const handlePlayTimer = (action) => {
+    if (runningTask.running && action === "play") return;
     setPlay(!play);
     //handle running task
-    handleRunningTask(runningTask);
+    handleRunningTask({
+      taskId: !play ? index : "",
+      running: !play
+    });
     // handleComponentState(settingsButton);
   };
 
   const handleFinishedTask = () => {
     updateFinishedTaskStatus(index);
+    handleRunningTask({
+      taskId: "",
+      running: false
+    });
   };
 
   return (
     <li>
-      {`runningTask: ${runningTask}`}
       <TaskContainer
         done={textDecoration}
         taskTimeWidth={taskTimeWidth}
@@ -151,12 +158,12 @@ const Task = (props) => {
         <p>{props.data.description}</p>
         <div>
           {play && !finished && (
-            <div onClick={() => handlePlayTimer()}>
+            <div onClick={() => handlePlayTimer("pause")}>
               <MdPauseCircleOutline />
             </div>
           )}
           {!play && !finished && (
-            <div onClick={() => handlePlayTimer()}>
+            <div onClick={() => handlePlayTimer("play")}>
               <MdPlayCircleOutline />
             </div>
           )}

@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   width: 100%;
-  height: 100%;
-  max-width: 768px;
-  min-height: 100%;
+  height: 100vh;
+  /* max-width: 768px; */
+  /* min-height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@ export const PageHeader = styled.header`
   height: 20vh;
   display: flex;
   justify-content: center;
-  margin: 3rem;
+  margin: 5rem;
 `;
 
 export const MainContainer = styled.div`
@@ -24,15 +24,18 @@ export const MainContainer = styled.div`
   max-width: 768px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;
 
 export const PageFooter = styled.footer`
   width: 80vw;
   max-width: 640px;
-  height: 15vh;
+  /* height: 15vh; */
+  height: 10vh;
   margin-top: 2rem;
-  bottom: 0;
-  position: absolute;
+  margin-bottom: 0;
+  /* bottom: 0; */
+  /* position: absolute; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +45,12 @@ export const PageFooter = styled.footer`
     width: 4.5rem;
     height: 4.5rem;
   }
+`;
+
+export const TaskListContainer = styled.ul`
+  /* listStyleType: "none" */
+  list-style-type: none;
+  min-height: 100%;
 `;
 
 export const TaskContainer = styled.div`

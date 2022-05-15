@@ -18,7 +18,7 @@ const Footer = ({ to }) => {
 
   return (
     <PageFooter>
-      {!runningTask && (
+      {!runningTask.running && (
         <Link to={to}>{match === null ? <MdSettings /> : <MdArrowBack />}</Link>
       )}
     </PageFooter>
