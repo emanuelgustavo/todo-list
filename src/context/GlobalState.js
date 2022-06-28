@@ -5,7 +5,7 @@ import GlobalContext from "./globalContext";
 import { reducers } from "./reducers";
 //reducers constants
 import {
-  HANDLE_DISABLE_PROPERTY,
+  //HANDLE_DISABLE_PROPERTY,
   UPDATE_SETTINGS,
   RUNNING_TASK,
   ADD_NEWTASK,
@@ -54,7 +54,7 @@ export const GlobalStateProvider = (props) => {
     }
   });
 
-  //Global state to handle compoenet behaviour
+  //Global state to handle component behaviour
   // const handleComponentState = (component) => {
   //   componentsStateDispatch({ type: HANDLE_DISABLE_PROPERTY, component });
   // };

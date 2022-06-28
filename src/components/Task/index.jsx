@@ -44,8 +44,8 @@ const Task = (props) => {
   //first useEffect
   useEffect(() => {
     const { play, taskTime, restTime } = props.data;
-    setTaskTime(taskTime);
-    setRestTime(restTime);
+    setTaskTime(taskTime * 60);
+    setRestTime(restTime * 60);
     setPlay(play);
     if (finished) {
       setRestTimeWidth(100);
@@ -156,6 +156,7 @@ const Task = (props) => {
         restTimeWidth={restTimeWidth}
       >
         <p>{props.data.description}</p>
+        <p>{`${Math.floor(counter / 60)} : ${counter % 60}`}</p>
         <div>
           {play && !finished && (
             <div onClick={() => handlePlayTimer("pause")}>
