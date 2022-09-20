@@ -30,12 +30,12 @@ export const GlobalStateProvider = (props) => {
       timer: 0,
       task: {
         minTime: 5,
-        maxTime: 10,
-        time: 5
+        maxTime: 25,
+        time: 10
       },
       rest: {
         minTime: 2,
-        maxTime: 5,
+        maxTime: 10,
         time: 2
       }
     }
